@@ -1,0 +1,94 @@
+<html>
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <input type="button" id="jsi-count-trigger" value="クリック数カウント" />
+    <input type="button" id="jsi-display-trigger" value="クリック数表示" />
+</body>
+<script type="text/javascript">
+    
+var clickCounter = {
+        clicks : 0,
+        clicksCountdown : 0,
+        clickButton : 0,
+    init : function(){
+        $('#jsi-count-trigger').on('click',function(){
+            this.clicksCountdown = 1; 
+            this.clicks = this.clicksCountdown;
+            console.log(this.clicks);
+        })
+        $('#jsi-display-trigger').on('click',function(){
+           
+        })
+    }
+};
+    
+    
+$(function(){
+    clickCounter.init();
+});
+    
+
+    
+</script>
+</html>
+
+
+<!--
+オブジェクト
+
+var data = {
+    add: function(data1,data2){
+        var result = data1 + data2
+        return result;
+    },
+    sub: function(data1,data2){
+        var result = data1 - data2
+        return result;
+    }
+    
+};
+    
+//console.log(data);
+var result = data.add(50, 70);
+console.log(result); 
+var result = data.sub(50, 70);
+console.log(result); -->
+
+
+
+<!--
+予約語this1 
+
+var incrementor = {
+    incrementNum : 0,
+    increment : function(){
+        if(this.incrementNum == 10){
+            this.incrementNum = 1;
+           }else{
+            this.incrementNum++;
+           }
+        console.log(this.incrementNum);
+    }
+};
+for(var i =0; i<100; i++){
+    incrementor.increment();
+}
+-->
+
+<!--
+var $trigger = $('#trigger');
+var $target = $('#target');
+    $trigger.on('click',function(){
+        var $check = $('[type="checkbox"]:checked')    
+        if($trigger.is($check)){
+           $target.css('background-color','#00F');
+         }else{
+           $target.css('background-color','#F00');   
+           }
+    });
+-->
+
+

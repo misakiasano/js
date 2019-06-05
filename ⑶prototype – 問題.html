@@ -1,0 +1,87 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+    
+var compare = {      //インスタンス変数は？
+    set : function(data){
+       this.array = data;
+    },
+    getMax : function(){
+        var max = this.array[0];
+        for(var i=0; i<this.array.length; i++){    //this,or,var??
+            if(max<this.array[i]){
+               max = this.array[i]; 
+            } 
+        }
+        return max;
+    },
+    getMin : function(){
+        this.min = this.array[0];                        //(6>1),(6>8),(6>5),(6>2) 変数に入れないと消えるから上書きされて２になった
+        for(var i=0; i<this.array.length; i++){
+            if(this.min>this.array[i]){  
+              this.min = this.array[i]; 
+            } 
+        }
+        return this.min;   
+    }
+};
+    
+compare.set([6,1,8,5,2]);
+console.log(compare.getMax()); //8と表示
+console.log(compare.getMin()); //１と表示
+
+    
+    
+</script>
+</html>
+
+
+<!--
+var count = function(data){
+        var fruits = {};
+        for(var i = 0; i<data.length; i++){
+            if(fruits[data[i]] == undefined){
+                fruits[data[i]]=1;
+            }else{
+                fruits[data[i]] = fruits[data[i]]+1;
+            }
+        }
+        var num1 = ' ';  
+        for(var i in fruits){ 
+            num1 = i +'='+ fruits[i]+' '+num1;
+          
+        }
+
+        return num1;
+        
+        
+    };
+    
+    var result = count(['orange','apple','lemon','apple','apple','orange']);
+    console.log(result); //orange=2 lemon=1 apple=3と表示
+    //console.log('orange='+fruits['orange'] + 'lemon='+fruits['lemon'] + 'apple='+fruits['apple'])
+
+-------------------------------------
+
+
+var getMax = function(data){
+    var item = data[0];
+    for(var i =0; i<data.length; i++){
+        if(item<data[i]){
+           item = data[i]; 
+        }
+    }
+    return item;
+}
+
+var result = getMax([2,5,1,9,8]);
+console.log(result);    //９と表示
+
+-->
+    
+
