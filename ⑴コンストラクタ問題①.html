@@ -20,16 +20,22 @@ var clickCounter = {
             console.log(this.clicks);
         })
         $('#jsi-display-trigger').on('click',function(){
-           
+            this.clickButton = this.clicks
+            alert(this.clickButton);
         })
     }
 };
-    console.log();
+    
     
     
 $(function(){
     clickCounter.init();
 });
+    
+    
+    
+    
+    
     
 
     
