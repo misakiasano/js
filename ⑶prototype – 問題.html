@@ -1,87 +1,98 @@
 <html>
 <head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 </head>
 <body>
+    <input type="button" id="jsi-count-trigger" value="クリック数カウント" />
+    <input type="button" id="jsi-display-trigger" value="クリック数表示" />
+    
+     <input type="button" id="jsi-count-trigger2" value="クリック数カウント" />
+    <input type="button" id="jsi-display-trigger2" value="クリック数表示" />
+    
 
-</body>
 <script type="text/javascript">
     
-var compare = {      //インスタンス変数は？
-    set : function(data){
-       this.array = data;
-    },
-    getMax : function(){
-        var max = this.array[0];
-        for(var i=0; i<this.array.length; i++){    //this,or,var??
-            if(max<this.array[i]){
-               max = this.array[i]; 
-            } 
-        }
-        return max;
-    },
-    getMin : function(){
-        this.min = this.array[0];                        //(6>1),(6>8),(6>5),(6>2) 変数に入れないと消えるから上書きされて２になった
-        for(var i=0; i<this.array.length; i++){
-            if(this.min>this.array[i]){  
-              this.min = this.array[i]; 
-            } 
-        }
-        return this.min;   
-    }
-};
+//var clickCounter = {
+//    clicksCountup: 0,
+//    $buttonCount: $('#jsi-count-trigger'),
+//    $buttonDisplay: $('#jsi-display-trigger'),
+//    init : function(){
+//        var myself = this;
+//        myself.$buttonCount.on('click',function(){
+//            myself.clicksCountup++;
+//        })
+//        myself.$buttonDisplay.on('click',function(){
+//            alert(myself.clicksCountup);
+//        })
+//    }
+//};
+//    
+//    
+//$(function(){
+//    clickCounter.init();
+//});
     
-compare.set([6,1,8,5,2]);
-console.log(compare.getMax()); //8と表示
-console.log(compare.getMin()); //１と表示
+    
+    
+//②    
+    
 
+//    var ClickCounter = function(arg1,arg2){
+//    this.clicksCountup = 0;
+//    this.$buttonCount = $(arg1);
+//    this.$buttonDisplay = $(arg2);
+//    this.init = function(){
+//        var myself = this;
+//        myself.$buttonCount.on('click',function(){
+//            myself.clicksCountup++;
+//        })
+//        myself.$buttonDisplay.on('click',function(){
+//            alert(myself.clicksCountup);
+//        })
+//    };
+//    
+//};  
+//    
+//var element = new ClickCounter('#jsi-count-trigger','#jsi-display-trigger'); 
+//    
+//$(function(){
+//    element.init();
+//});
+//    
     
+    
+//③
+    
+    var ClickCounter = function(arg1,arg2){
+        this.clicksCountup = 0;
+        this.$buttonCount = $(arg1);
+        this.$buttonDisplay = $(arg2);
+    }
+    ClickCounter.prototype={
+        init:function(){
+            var myself = this;
+            myself.$buttonCount.on('click',function(){
+                myself.clicksCountup++;
+            })
+            myself.$buttonDisplay.on('click',function(){
+                alert(myself.clicksCountup);
+            })
+        }
+    }
+    
+
+    var element = new ClickCounter('#jsi-count-trigger','#jsi-display-trigger'); 
+    
+    $(function(){
+        element.init();
+    }); 
+    
+    
+    
+    
+
     
 </script>
+    </body>
 </html>
-
-
-<!--
-var count = function(data){
-        var fruits = {};
-        for(var i = 0; i<data.length; i++){
-            if(fruits[data[i]] == undefined){
-                fruits[data[i]]=1;
-            }else{
-                fruits[data[i]] = fruits[data[i]]+1;
-            }
-        }
-        var num1 = ' ';  
-        for(var i in fruits){ 
-            num1 = i +'='+ fruits[i]+' '+num1;
-          
-        }
-
-        return num1;
-        
-        
-    };
-    
-    var result = count(['orange','apple','lemon','apple','apple','orange']);
-    console.log(result); //orange=2 lemon=1 apple=3と表示
-    //console.log('orange='+fruits['orange'] + 'lemon='+fruits['lemon'] + 'apple='+fruits['apple'])
-
--------------------------------------
-
-
-var getMax = function(data){
-    var item = data[0];
-    for(var i =0; i<data.length; i++){
-        if(item<data[i]){
-           item = data[i]; 
-        }
-    }
-    return item;
-}
-
-var result = getMax([2,5,1,9,8]);
-console.log(result);    //９と表示
-
--->
-    
-

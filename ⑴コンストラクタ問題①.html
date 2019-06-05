@@ -6,26 +6,27 @@
 <body>
     <input type="button" id="jsi-count-trigger" value="クリック数カウント" />
     <input type="button" id="jsi-display-trigger" value="クリック数表示" />
+    
+     <input type="button" id="jsi-count-trigger2" value="クリック数カウント" />
+    <input type="button" id="jsi-display-trigger2" value="クリック数表示" />
+    
 </body>
 <script type="text/javascript">
     
 var clickCounter = {
-        clicks : 0,
-        clicksCountdown : 0,
-        clickButton : 0,
+    clicksCountup: 0,
+    $buttonCount: $('#jsi-count-trigger'),
+    $buttonDisplay: $('#jsi-display-trigger'),
     init : function(){
-        $('#jsi-count-trigger').on('click',function(){
-            this.clicksCountdown = 1; 
-            this.clicks = this.clicksCountdown;
-            console.log(this.clicks);
+        var myself = this;
+        myself.$buttonCount.on('click',function(){
+            myself.clicksCountup++;
         })
-        $('#jsi-display-trigger').on('click',function(){
-            this.clickButton = this.clicks
-            alert(this.clickButton);
+        myself.$buttonDisplay.on('click',function(){
+            alert(myself.clicksCountup);
         })
     }
 };
-    
     
     
 $(function(){
