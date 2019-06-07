@@ -1,0 +1,73 @@
+<html>
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+    <input type="button" id="jsi-count-trigger" value="クリック数カウント" />
+    <input type="button" id="jsi-display-trigger" value="クリック数表示" />
+
+    
+</body>
+<script type="text/javascript">
+ 
+var Creator = function(){
+    var count = 0;
+    var $countTrigger = $('#jsi-count-trigger');
+    var $displayTrigger = $('#jsi-display-trigger');
+    
+    return{
+        count: 0, 
+        init : function(){
+            
+            $countTrigger.on('click', function(){
+                count++;
+            });
+            $displayTrigger.on('click', function(){
+               alert(count);
+            });
+            
+        }
+    };
+  
+};
+var clickCounter = Creator();
+    clickCounter.init();
+ 
+
+   
+    
+    
+
+    
+    
+    
+
+    
+</script>
+</html>
+
+var clickCounter = {
+    count : 0,
+    $countTrigger : $('#jsi-count-trigger'),
+    $displayTrigger : $('#jsi-display-trigger'),
+    
+    init : function(){
+        var myself = this;
+        
+        this.$countTrigger.on('click', function(){
+            myself.count++;
+        });
+        this.$displayTrigger.on('click', function(){
+           alert(myself.count);
+        });
+    }
+};
+
+
+    x = {
+        count: 0,
+        this.count
+    }
+    
+    x.count
