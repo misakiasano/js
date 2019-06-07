@@ -12,13 +12,34 @@
         'banana orange strawberry pear'
     ];
     
+    for(var i = 0; i<data.length; i++){
+        var indexOrange = data[i].indexOf('orange');
+        var indexPear = data[i].indexOf('pear');
+        if(indexOrange > -1 && indexPear > -1 && indexOrange < indexPear){
+            var index = data[i].substring(indexOrange+'orange'.length,indexPear);
+            console.log(index);
+        }
+    }
     
-    if(){
-       
-       }
     
-
+    
+//    数値で最初は考えた方がわかりやすい！
+//            7  　　　　　+  　　　　　 6          =   　　　　13　
+//            ↑                       ↑　　　　　　　　　　　　　↑
+//    oranegeの位置                　orangeの要素数　　　　　　　　　　　  strawberryの開始位置 
+//    |__________________________________________|                    
+//    
+//                orangeの最後の位置の求め方  
+//    
+//    
+//    
+//    
+//    substringの開始位置は１３の次の１４から
     
 </script>
 </html>
+
+
+
+
 
