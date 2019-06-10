@@ -6,13 +6,23 @@
 
 </body>
 <script type="text/javascript">
-    var data = [
-        'apple orange lemon banana',
-        'pear banana orange strawberry',
-        'banana orange strawberry pear'
-    ];
+  var address = [
+    'user1@docomo.ne.jp',
+    'user2@anonymous.us',
+    'user3@leihauoli.com',
+    'user4@softbank@co.jp',
+    '@yahoo.co.jp'
+];
+
+for(var i = 0; i < address.length; i++){
+    if(/^[A-Za-z0-9]+　　　　　　　　　/.test(address[i])){
+        console.log() ; 
+    } 
+}
+
     
-    
+// アカウント名 = user1, ドメイン名 = docomo
+//アカウント名 = user3, ドメイン名 = leihauoli   
     
     
     
