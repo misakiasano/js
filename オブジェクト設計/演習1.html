@@ -110,27 +110,38 @@
 <script type="text/javascript">
     
 var LEIHAUOLI = LEIHAUOLI || {};
-LAIHAUOLI.PAGE1 = {};
-LAIHAUOLI.PAGE1.carousel = {
+LEIHAUOLI.PAGE1 = {};
+LEIHAUOLI.PAGE1.carousel = {
     init : function(){
         this.setParameters();
         this.setTimer();
-        this.bindEvent();
+       // this.bindEvent();
     },
     setParameters : function(){
-        
+       
         var $btnNext = $('.next');
         var $btnPrevious = $('.previous');
         var $container = $('.container');
         var $img = $('img');
         var width1 = $img.width();
         
-        $btnNext.on('click',function(){
+        $btnPrevious.on('click',function(){
             if($container.is(':animated')){
                 return;
             }
             var left = $container.position().left;
             $container.animate({left:left+width1},300);
+            
+            
+        });
+        
+        
+         $btnNext.on('click',function(){
+            if($container.is(':animated')){
+                return;
+            }
+            var left = $container.position().left;
+            $container.animate({left:left-width1},300);
             
             
         });
