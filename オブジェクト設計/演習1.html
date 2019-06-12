@@ -124,34 +124,47 @@ LEIHAUOLI.PAGE1.carousel = {
         var $container = $('.container');
         var $img = $('img');
         var width1 = $img.width();
-        var imgLength = $img.length;
-        var lastPage = width1*(imgLength-1)
+        var currentIndex = 0
+        console.log(currentIndex);
         
-        $btnPrevious.on('click',function(){
+        
+        $btnNext.on('click',function(){
             if($container.is(':animated')){
                 return;
             }
-            var left = $container.position().left;
-            if(left == lastPage){
+
+            if(currentIndex == 3){
                 return;
+               }else{
+                 currentIndex++;
                }
-            $container.animate({left:left-width1},300);
+            $container.animate({left:currentIndex*width1*-1},300);
             
             
         });
         
         
-         $btnNext.on('click',function(){
+         $btnPrevious.on('click',function(){
             if($container.is(':animated')){
                 return;
             }
-            var left = $container.position().left;
-            if(left == 0){
+            if(currentIndex == 0){
                 return;
+            }else{
+                currentIndex--;
             }
-            $container.animate({left:left+width1},300);
+            $container.animate({left:currentIndex*width1*-1},300);
             
             
+        });
+        
+        
+        $('.indicator-wrapper').each(function(i){
+           if(i == currentIndex){
+                $('li').addClass('.current')          
+           }else{
+                $('li').removeClass('.current')
+           }
         });
         
         
