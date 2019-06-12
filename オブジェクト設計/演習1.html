@@ -109,8 +109,62 @@
 </body>
 <script type="text/javascript">
     
-var Carousel = function()  
+var LEIHAUOLI = LEIHAUOLI || {};
+LAIHAUOLI.PAGE1 = {};
+LAIHAUOLI.PAGE1.carousel = {
+    init : function(){
+        this.setParameters();
+        this.setTimer();
+        this.bindEvent();
+    },
+    setParameters : function(){
+        
+        var $btnNext = $('.next');
+        var $btnPrevious = $('.previous');
+        var $container = $('.container');
+        var $img = $('img');
+        var width1 = $img.width();
+        
+        $btnNext.on('click',function(){
+            if($container.is(':animated')){
+                return;
+            }
+            var left = $container.position().left;
+            $container.animate({left:left+width1},300);
+            
+            
+        });
+        
+        
+        
+        
+        
+    },
+    setTimer : function(){
+        
+        
+        
+    },
+    bindEvent : function(){
+        this.$previousTrigger.on('click', $.proxy(this.slideToPrevious, this));
+        this.$nextTrigger.on('click', this.slideToNext.bind(this));
+    },
+    slideToPrevious : function(){
     
+        
+        
+    },
+    slideToNext : function(){
+       
+        
+        
+    }
+};
+$(function(){
+    LEIHAUOLI.PAGE1.carousel.init();
+});
+ 
+ 
     
     
     
