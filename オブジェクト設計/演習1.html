@@ -114,31 +114,37 @@ LEIHAUOLI.PAGE1 = {};
 LEIHAUOLI.PAGE1.carousel = {
     init : function(){
         this.setParameters();
-        this.setTimer();
+        //this.setTimer();
        // this.bindEvent();
     },
     setParameters : function(){
+        var myself = this;
        
         var $btnNext = $('.next');
         var $btnPrevious = $('.previous');
         var $container = $('.container');
         var $img = $('img');
         var width1 = $img.width();
-        var currentIndex = 0
-        console.log(currentIndex);
+        var $containerLength = $('.container li').length;
+        this.lastPage = $containerLength-1;
+        this.currentIndex = 0;
         
         
         $btnNext.on('click',function(){
             if($container.is(':animated')){
-                return;
+                return;  
             }
 
-            if(currentIndex == 3){
+            if(myself.currentIndex == myself.lastPage){
                 return;
                }else{
-                 currentIndex++;
+                myself.currentIndex++;
                }
-            $container.animate({left:currentIndex*width1*-1},300);
+            $container.animate({left:myself.currentIndex*width1*-1},300);
+            myself.setIndicator();
+            myself.setArrowNext();
+            
+            
             
             
         });
@@ -148,38 +154,98 @@ LEIHAUOLI.PAGE1.carousel = {
             if($container.is(':animated')){
                 return;
             }
-            if(currentIndex == 0){
+            if(myself.currentIndex == 0){
                 return;
             }else{
-                currentIndex--;
+                myself.currentIndex--;
             }
-            $container.animate({left:currentIndex*width1*-1},300);
+            $container.animate({left:myself.currentIndex*width1*-1},300);
+            myself.setIndicator();
+            myself.setArrowPrevious();
             
             
         });
         
         
-        $('.indicator-wrapper').each(function(i){
-           if(i == currentIndex){
-                $('li').addClass('.current')          
-           }else{
-                $('li').removeClass('.current')
-           }
+        var $indicator = $('.indicator-wrapper').find('a');
+        $indicator.each(function(index){
+            var $self = $(this);
+            
+            $self.on('click',function(event){
+                
+                if(myself.currentIndex ){
+                       
+                }
+                
+            });
         });
+        
+        
         
         
         
         
         
     },
+    
+    
+    
+    
+    
+    
+    
+    setIndicator: function() {
+        var myself = this;
+        var $indicator = $('.indicator-wrapper').find('a');
+        $indicator.each(function(i){
+            var $elemens = $(this);
+            if(i == myself.currentIndex){
+                $elemens.addClass('current');
+            }else{
+                $elemens.removeClass('current');
+            }
+        });
+    },
+    
+    setArrowNext: function(){
+        if(this.currentIndex == this.lastPage){
+            $('.next').addClass('disabled');
+        }else{
+            $('.next').removeClass('disabled');
+            $('.previous').removeClass('disabled');
+        } 
+    },
+    
+    
+    setArrowPrevious:function(){
+        if(this.currentIndex == 0){
+            $('.previous').addClass('disabled');
+        }else{
+            $('.previous').removeClass('disabled');
+            $('.next').removeClass('disabled');
+        }
+    },
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     setTimer : function(){
         
         
         
     },
     bindEvent : function(){
-        this.$previousTrigger.on('click', $.proxy(this.slideToPrevious, this));
-        this.$nextTrigger.on('click', this.slideToNext.bind(this));
+        
     },
     slideToPrevious : function(){
     
