@@ -138,6 +138,146 @@
 </div>
 </body>
 <script type="text/javascript">
+    
+    
+var LEIHAUOLI = LEIHAUOLI || {};
+LEIHAUOLI.PAGE1 = {};    
+LEIHAUOLI.PAGE1.Carousel = function($outerWrapper){
+        this.$outerWrapper = $outerWrapper;
+        this.init();
+};    
+    
+    
+LEIHAUOLI.PAGE1.Carousel.prototype = {
+    
+    init : function(){
+        this.setParameters();
+        this.setLinkIndicator();
+        this.bindEvent();
+    },
+    
+    
+    setParameters : function(){
+        var myself = this;
+        this.$btnNext = this.$outerWrapper.find('.next');
+        this.$btnPrevious = this.$outerWrapper.find('.previous');
+        this.$container = this.$outerWrapper.find('.container');
+        this.$containerLength = this.$outerWrapper.find('.container li').length;
+        this.$indicator = this.$outerWrapper.find('.indicator-wrapper').find('a');
+        this.$img = $('img');
+        this.width1 = this.$img.width();
+        this.lastPage = this.$containerLength-1;
+        this.currentIndex = 0; 
+    },
+    
+
+    bindEvent : function(){
+        this.$btnNext.on('click',this.slideToNext.bind(this));
+        this.$btnPrevious.on('click',this.slideToPrevious.bind(this)); 
+    },
+    
+    slideToPrevious : function(){
+        if(this.$container.is(':animated')){
+            return;
+        }
+        if(this.currentIndex == 0){
+            return;
+        }else{
+            this.currentIndex--;
+        }
+        this.$container.animate({left:this.currentIndex*this.width1*-1},300);
+        this.setIndicator();
+        this.setArrowPrevious(); 
+    },
+    
+    slideToNext : function(){
+        if(this.$container.is(':animated')){
+            return;  
+        }
+
+        if(this.currentIndex == this.lastPage){
+            return;
+        }else{
+            this.currentIndex++;
+        }
+        this.$container.animate({left:this.currentIndex*this.width1*-1},300);
+        this.setIndicator();
+        this.setArrowNext();
+    },
+    
+    setIndicator: function() {
+            var myself = this;
+            this.$indicator.each(function(i){
+            var $elemens = $(this);
+            if(i == myself.currentIndex){
+                $elemens.addClass('current');
+            }else{
+                $elemens.removeClass('current');
+            }
+        });
+    },
+    
+    setArrowNext: function(){
+        if(this.currentIndex == this.lastPage){
+            this.$btnNext.addClass('disabled');
+        }else{
+            this.$btnPrevious.removeClass('disabled');
+        } 
+    },
+    
+    
+    setArrowPrevious:function(){
+        if(this.currentIndex == 0){
+            this.$btnPrevious.addClass('disabled');
+        }else{
+            this.$btnNext.removeClass('disabled');
+        }
+    },
+    
+    
+    
+    setLinkIndicator: function(){
+        var myself = this;
+        
+        this.$indicator.each(function(index){
+        var $self = $(this);
+            $self.on('click',function(event){
+                event.preventDefault();
+                myself.currentIndex = index;
+                myself.$container.animate({left:myself.currentIndex*myself.width1*-1},300);
+                this.$indicator.removeClass('current');
+                $self.addClass('current');
+                this.$btnPrevious.removeClass('disabled');
+                this.$btnNext.removeClass('disabled');
+                if(myself.currentIndex == myself.lastPage){
+                    this.$btnNext.addClass('disabled');
+                }
+                if(myself.currentIndex == 0){
+                    this.$btnPrevious.addClass('disabled');
+                }
+
+            });
+        });        
+          
+    } 
+
+ };
+      
+    
+
+
+    
+    
+$(function(){
+    $('.outer-wrapper').each(function(){
+        new LEIHAUOLI.PAGE1.Carousel($(this));    
+    });
+}); 
+    
+    
+
+    
+    
 
 </script>
 </html>
