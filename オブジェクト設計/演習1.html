@@ -114,85 +114,50 @@ LEIHAUOLI.PAGE1 = {};
 LEIHAUOLI.PAGE1.carousel = {
     init : function(){
         this.setParameters();
-        //this.setTimer();
-       // this.bindEvent();
+        this.setLinkIndicator();
+        this.bindEvent();
     },
     setParameters : function(){
         var myself = this;
-       
-        var $btnNext = $('.next');
-        var $btnPrevious = $('.previous');
-        var $container = $('.container');
-        var $img = $('img');
-        var width1 = $img.width();
-        var $containerLength = $('.container li').length;
-        this.lastPage = $containerLength-1;
+        this.$btnNext = $('.next');
+        this.$btnPrevious = $('.previous');
+        this.$container = $('.container');
+        this.$img = $('img');
+        this.width1 = this.$img.width();
+        this.$containerLength = $('.container li').length;
+        this.lastPage = this.$containerLength-1;
         this.currentIndex = 0;
         
-        
-        $btnNext.on('click',function(){
-            if($container.is(':animated')){
-                return;  
-            }
+    },  
 
-            if(myself.currentIndex == myself.lastPage){
-                return;
-               }else{
-                myself.currentIndex++;
-               }
-            $container.animate({left:myself.currentIndex*width1*-1},300);
-            myself.setIndicator();
-            myself.setArrowNext();
-            
-            
-            
-            
-        });
-        
-        
-         $btnPrevious.on('click',function(){
-            if($container.is(':animated')){
-                return;
-            }
-            if(myself.currentIndex == 0){
-                return;
-            }else{
-                myself.currentIndex--;
-            }
-            $container.animate({left:myself.currentIndex*width1*-1},300);
-            myself.setIndicator();
-            myself.setArrowPrevious();
-            
-            
-        });
-        
-        
+         
+    setLinkIndicator: function(){
         var $indicator = $('.indicator-wrapper').find('a');
+        var myself = this;
+        
         $indicator.each(function(index){
-            var $self = $(this);
-            
+        var $self = $(this);
             $self.on('click',function(event){
-                
-                if(myself.currentIndex ){
-                       
+                event.preventDefault();
+                myself.currentIndex = index;
+                myself.$container.animate({left:myself.currentIndex*myself.width1*-1},300);
+                $indicator.removeClass('current');
+                $self.addClass('current');
+                $('.previous').removeClass('disabled');
+                $('.next').removeClass('disabled');
+                if(myself.currentIndex == myself.lastPage){
+                    $('.next').addClass('disabled');
                 }
-                
+                if(myself.currentIndex == 0){
+                    $('.previous').addClass('disabled');
+                }
+
             });
-        });
+        });        
+          
+    },  
         
-        
-        
-        
-        
-        
-        
-    },
-    
-    
-    
-    
-    
-    
+
     
     setIndicator: function() {
         var myself = this;
@@ -211,7 +176,6 @@ LEIHAUOLI.PAGE1.carousel = {
         if(this.currentIndex == this.lastPage){
             $('.next').addClass('disabled');
         }else{
-            $('.next').removeClass('disabled');
             $('.previous').removeClass('disabled');
         } 
     },
@@ -221,38 +185,48 @@ LEIHAUOLI.PAGE1.carousel = {
         if(this.currentIndex == 0){
             $('.previous').addClass('disabled');
         }else{
-            $('.previous').removeClass('disabled');
             $('.next').removeClass('disabled');
         }
     },
     
 
 
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    setTimer : function(){
-        
-        
-        
-    },
     bindEvent : function(){
-        
+        this.$btnNext.on('click',this.slideToNext.bind(this));
+        this.$btnPrevious.on('click',this.slideToPrevious.bind(this)); 
     },
     slideToPrevious : function(){
-    
+        if(this.$container.is(':animated')){
+            return;
+        }
+        if(this.currentIndex == 0){
+            return;
+        }else{
+            this.currentIndex--;
+        }
+        this.$container.animate({left:this.currentIndex*this.width1*-1},300);
+        this.setIndicator();
+        this.setArrowPrevious();
+          
         
         
     },
     slideToNext : function(){
+        if(this.$container.is(':animated')){
+            return;  
+        }
+
+        if(this.currentIndex == this.lastPage){
+            return;
+        }else{
+            this.currentIndex++;
+        }
+        this.$container.animate({left:this.currentIndex*this.width1*-1},300);
+        this.setIndicator();
+        this.setArrowNext();
+        
        
         
         
