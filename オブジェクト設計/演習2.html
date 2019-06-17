@@ -164,7 +164,7 @@ LEIHAUOLI.PAGE1.Carousel.prototype = {
         this.$container = this.$outerWrapper.find('.container');
         this.$containerLength = this.$outerWrapper.find('.container li').length;
         this.$indicator = this.$outerWrapper.find('.indicator-wrapper').find('a');
-        this.$img = $('img');
+        this.$img = this.$outerWrapper.find('img');
         this.width1 = this.$img.width();
         this.lastPage = this.$containerLength-1;
         this.currentIndex = 0; 
@@ -176,7 +176,11 @@ LEIHAUOLI.PAGE1.Carousel.prototype = {
         this.$btnPrevious.on('click',this.slideToPrevious.bind(this)); 
     },
     
-    slideToPrevious : function(){
+
+    
+    slideToPrevious : function(event){
+        console.log(event);
+        event.preventDefault(); 
         if(this.$container.is(':animated')){
             return;
         }
@@ -190,7 +194,8 @@ LEIHAUOLI.PAGE1.Carousel.prototype = {
         this.setArrowPrevious(); 
     },
     
-    slideToNext : function(){
+    slideToNext : function(event){
+        event.preventDefault(); 
         if(this.$container.is(':animated')){
             return;  
         }
@@ -245,15 +250,15 @@ LEIHAUOLI.PAGE1.Carousel.prototype = {
                 event.preventDefault();
                 myself.currentIndex = index;
                 myself.$container.animate({left:myself.currentIndex*myself.width1*-1},300);
-                this.$indicator.removeClass('current');
+                myself.$indicator.removeClass('current');
                 $self.addClass('current');
-                this.$btnPrevious.removeClass('disabled');
-                this.$btnNext.removeClass('disabled');
+                myself.$btnPrevious.removeClass('disabled');
+                myself.$btnNext.removeClass('disabled');
                 if(myself.currentIndex == myself.lastPage){
-                    this.$btnNext.addClass('disabled');
+                    myself.$btnNext.addClass('disabled');
                 }
                 if(myself.currentIndex == 0){
-                    this.$btnPrevious.addClass('disabled');
+                    myself.$btnPrevious.addClass('disabled');
                 }
 
             });
