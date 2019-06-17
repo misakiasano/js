@@ -114,119 +114,94 @@ LEIHAUOLI.PAGE1 = {};
 LEIHAUOLI.PAGE1.carousel = {
     init : function(){
         this.setParameters();
-        this.setLinkIndicator();
-        this.bindEvent();
+        this.setTimer();
+       // this.bindEvent();
     },
     setParameters : function(){
-        var myself = this;
-        this.$btnNext = $('.next');
-        this.$btnPrevious = $('.previous');
-        this.$container = $('.container');
-        this.$img = $('img');
-        this.width1 = this.$img.width();
-        this.$containerLength = $('.container li').length;
-        this.lastPage = this.$containerLength-1;
-        this.currentIndex = 0;
+		var self = this;
+       
+        var $btnNext = $('.next');
+        var $btnPrevious = $('.previous');
+        var $container = $('.container');
+        var $img = $('img');
+        var width1 = $img.width();
+        this.currentIndex = 0
+        console.log(self.currentIndex);
         
-    },  
-
-         
-    setLinkIndicator: function(){
-        var $indicator = $('.indicator-wrapper').find('a');
-        var myself = this;
         
-        $indicator.each(function(index){
-        var $self = $(this);
-            $self.on('click',function(event){
-                event.preventDefault();
-                myself.currentIndex = index;
-                myself.$container.animate({left:myself.currentIndex*myself.width1*-1},300);
-                $indicator.removeClass('current');
-                $self.addClass('current');
-                $('.previous').removeClass('disabled');
-                $('.next').removeClass('disabled');
-                if(myself.currentIndex == myself.lastPage){
-                    $('.next').addClass('disabled');
-                }
-                if(myself.currentIndex == 0){
-                    $('.previous').addClass('disabled');
-                }
-
-            });
-        });        
-          
-    },  
-        
-
-    
-    setIndicator: function() {
-        var myself = this;
-        var $indicator = $('.indicator-wrapper').find('a');
-        $indicator.each(function(i){
-            var $elemens = $(this);
-            if(i == myself.currentIndex){
-                $elemens.addClass('current');
-            }else{
-                $elemens.removeClass('current');
+        $btnNext.on('click',function(){
+            if($container.is(':animated')){
+                return;
             }
+
+            if(self.currentIndex == 3){
+                return;
+               }else{
+				self.currentIndex++;
+               }
+			$container.animate({left:self.currentIndex*width1*-1},300);
+			self.setIndicatior();
+            
+            
         });
+        
+        
+         $btnPrevious.on('click',function(){
+            if($container.is(':animated')){
+                return;
+            }
+            if(self.currentIndex == 0){
+                return;
+            }else{
+                self.currentIndex--;
+            }
+			$container.animate({left:self.currentIndex*width1*-1},300);
+			self.setIndicatior();
+            
+            
+        });
+        
+        
+        // $('.indicator-wrapper').each(function(i){
+        //    if(i == currentIndex){
+        //         $('li').addClass('.current')          
+        //    }else{
+        //         $('li').removeClass('.current')
+        //    }
+        // });
+        
+        
+        
+        
+        
+	},
+	setIndicatior: function() {
+		var self = this;
+		console.log('setIndicatior');
+		$('.indicator-wrapper').find('a').each(function(i){
+			var $this = $(this);
+           if(i == self.currentIndex){
+				$this.addClass('current')          
+           }else{
+				$this.removeClass('current')
+           }
+        });
+	},
+    setTimer : function(){
+        
+        
+        
     },
-    
-    setArrowNext: function(){
-        if(this.currentIndex == this.lastPage){
-            $('.next').addClass('disabled');
-        }else{
-            $('.previous').removeClass('disabled');
-        } 
-    },
-    
-    
-    setArrowPrevious:function(){
-        if(this.currentIndex == 0){
-            $('.previous').addClass('disabled');
-        }else{
-            $('.next').removeClass('disabled');
-        }
-    },
-    
-
-
-
-    
     bindEvent : function(){
-        this.$btnNext.on('click',this.slideToNext.bind(this));
-        this.$btnPrevious.on('click',this.slideToPrevious.bind(this)); 
+        this.$previousTrigger.on('click', $.proxy(this.slideToPrevious, this));
+        this.$nextTrigger.on('click', this.slideToNext.bind(this));
     },
     slideToPrevious : function(){
-        if(this.$container.is(':animated')){
-            return;
-        }
-        if(this.currentIndex == 0){
-            return;
-        }else{
-            this.currentIndex--;
-        }
-        this.$container.animate({left:this.currentIndex*this.width1*-1},300);
-        this.setIndicator();
-        this.setArrowPrevious();
-          
+    
         
         
     },
     slideToNext : function(){
-        if(this.$container.is(':animated')){
-            return;  
-        }
-
-        if(this.currentIndex == this.lastPage){
-            return;
-        }else{
-            this.currentIndex++;
-        }
-        this.$container.animate({left:this.currentIndex*this.width1*-1},300);
-        this.setIndicator();
-        this.setArrowNext();
-        
        
         
         
