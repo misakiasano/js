@@ -191,7 +191,8 @@ LEIHAUOLI.PAGE1.Carousel.prototype = {
         }
         this.$container.animate({left:this.currentIndex*this.width1*-1},300);
         this.setIndicator();
-        this.setArrowPrevious(); 
+		this.setArrowNext();
+		this.setArrowPrevious(); 
     },
     
     slideToNext : function(event){
@@ -207,7 +208,8 @@ LEIHAUOLI.PAGE1.Carousel.prototype = {
         }
         this.$container.animate({left:this.currentIndex*this.width1*-1},300);
         this.setIndicator();
-        this.setArrowNext();
+		this.setArrowNext();
+		this.setArrowPrevious();
     },
     
     setIndicator: function() {
@@ -226,7 +228,7 @@ LEIHAUOLI.PAGE1.Carousel.prototype = {
         if(this.currentIndex == this.lastPage){
             this.$btnNext.addClass('disabled');
         }else{
-            this.$btnPrevious.removeClass('disabled');
+            this.$btnNext.removeClass('disabled');
         } 
     },
     
@@ -235,7 +237,7 @@ LEIHAUOLI.PAGE1.Carousel.prototype = {
         if(this.currentIndex == 0){
             this.$btnPrevious.addClass('disabled');
         }else{
-            this.$btnNext.removeClass('disabled');
+            this.$btnPrevious.removeClass('disabled');
         }
     },
     
