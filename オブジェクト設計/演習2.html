@@ -172,7 +172,7 @@ LEIHAUOLI.PAGE1.Carousel.prototype = {
     bindEvent : function(){
 		var myself = this;
 
-        this.$btnNext.on('click',this.slideToNext.bind(this));
+		this.$btnNext.on('click',this.slideToNext.bind(this));
 		this.$btnPrevious.on('click',this.slideToPrevious.bind(this));
 		this.$indicator.each(function(index) {
 			var $self = $(this);
@@ -190,27 +190,19 @@ LEIHAUOLI.PAGE1.Carousel.prototype = {
     
     slideToPrevious : function(event){
         event.preventDefault(); 
-        if(this.$container.is(':animated')){
+        if(this.$container.is(':animated') || this.currentIndex == 0){
             return;
         }
-        if(this.currentIndex == 0){
-            return;
-        }else{
-            this.currentIndex--;
-        }
+        this.currentIndex--;
         this.moveContainer();
     },
     
     slideToNext : function(event){
         event.preventDefault(); 
-        if(this.$container.is(':animated')){
+        if(this.$container.is(':animated') || this.currentIndex == this.lastPage){
             return;  
         }
-        if(this.currentIndex == this.lastPage){
-            return;
-        }else{
-            this.currentIndex++;
-        }
+        this.currentIndex++;
         this.moveContainer();
     },
     
