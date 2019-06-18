@@ -189,10 +189,14 @@ LEIHAUOLI.PAGE1.Carousel.prototype = {
         }else{
             this.currentIndex--;
         }
+<<<<<<< HEAD
         this.$container.animate({left:this.currentIndex*this.width1*-1},300);
         this.setIndicator();
 		this.setArrowNext();
 		this.setArrowPrevious(); 
+=======
+        this.set();
+>>>>>>> 13af295d590b1e5c4a3e1d90af7d2c4fe1e61539
     },
     
     slideToNext : function(event){
@@ -206,10 +210,20 @@ LEIHAUOLI.PAGE1.Carousel.prototype = {
         }else{
             this.currentIndex++;
         }
+        this.set();
+    },
+    
+    
+    set : function(){
         this.$container.animate({left:this.currentIndex*this.width1*-1},300);
         this.setIndicator();
+<<<<<<< HEAD
 		this.setArrowNext();
 		this.setArrowPrevious();
+=======
+        this.setArrowNext();
+        this.setArrowPrevious();    
+>>>>>>> 13af295d590b1e5c4a3e1d90af7d2c4fe1e61539
     },
     
     setIndicator: function() {
