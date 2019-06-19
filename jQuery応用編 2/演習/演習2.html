@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <style type="text/css">
+        .container{
+            width: 700px;
+            position:relative;
+            margin: 300px auto;
+        }
+        .tab-selector{
+            padding: 0px;
+            list-style: none;
+            margin: 0px 0px 0px 10px;
+            z-index: 1;
+            position:relative;
+        }
+        .tab-selector li{
+            margin: 0px 1px 0px 0px;
+            padding: 10px;
+            border: solid 1px #808080;
+            border-radius: 5px 5px 0px 0px;
+            text-align: center;
+            width: 200px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tab-selector li a{
+            text-decoration: none;
+        }
+        .tab-selector li.selected{
+            border-bottom: solid 1px transparent;
+        }
+        .tab-container{
+            padding: 0px;
+            list-style: none;
+            margin-top:-1px;
+            position:relative;
+        }
+        .tab-container li{
+            margin: 0px;
+            padding: 10px;
+            border: solid 1px #808080;
+            text-align: left;
+            width: 680px;
+            height: 300px;
+            display: inline-block;
+            display: none;
+        }
+        .tab-container li.selected{
+            display: block;
+        }
+        .selector1, #container1{
+            background-color: #2ECC71;
+        }
+        .selector2, #container2{
+            background-color: #3498DB;
+        }
+        .selector3, #container3{
+            background-color: #F39C12;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul class="tab-selector">
+        <li class="selected selector1"><a href="#container1">タブ1</a></li>
+        <li class="selector2"><a href="#container2">タブ2</a></li>
+        <li class="selector3"><a href="#container3">タブ3</a></li>
+    </ul>
+    <ul class="tab-container">
+        <li id="container1" class="selected">
+            コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1コンテンツ1
+        </li>
+        <li id="container2">
+            コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2コンテンツ2
+        </li>
+        <li id="container3">
+            コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3コンテンツ3
+        </li>
+    </ul>
+</div>
+</body>
+<script type="text/javascript">
+    var LEIHAUOLI = LEIHAUOLI || {};
+    LEIHAUOLI.PAGE1 = {};
+    LEIHAUOLI.PAGE1.tabContents = {
+        init : function(){
+            this.bindEvent();
+            this.setParameters();
+        },
+        
+        setParameters : function(){
+            this.$containerLi = $('.tab-container').find('li');
+            this.$selectorLi = $('.tab-selector').find('li');
+            
+        },
+        
+        bindEvent : function(){
+            var myself = this;
+            this.$tabFind = $('.tab-selector').find('a');
+            this.$tabFind.each(function(index){
+                var $element = $(this);
+                var tabAttr = $element.attr('href');
+                var containerAttr = $(tabAttr);
+                $element.on('click',function(event){
+                    event.preventDefault();
+                    myself.$containerLi.removeClass('selected');
+                    myself.$selectorLi.removeClass('selected');
+                    console.log(containerAttr);
+                    myself.$selectorLi.eq(index).addClass('selected');
+                    containerAttr.addClass('selected');
+                    
+                });
+                
+            });    
+        }
+        
+  
+        
+    };
+    
+    
+    
+    
+    $(function(){
+    LEIHAUOLI.PAGE1.tabContents.init();
+});
+    
+    
+    
+    
+    
+    
+    
+    
+
+</script>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <style type="text/css">
+        .information-area{
+            position:relative;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 10px;
+        }
+        .information{
+           display: inline-block;
+           margin-right: 50px;
+        }
+        .score, .time{
+            padding: 0px 10px;
+            font-size: 30px;
+            color: #0000FF;
+        }
+        .wrapper{
+            width: 684px;
+            margin:0px auto;
+        }
+        .play-area{
+            width: 672px;
+            height: 560px;
+            padding: 5px;
+            border: solid 1px #808080;
+            border-radius: 5px;
+            background-color: #C0C0C0;
+        }
+        .play-area li{
+            position: relative;
+            overflow: hidden;
+            width: 100px;
+            height: 100px;
+            border: solid 1px #808080;
+            border-radius: 5px;
+            margin: 5px;
+            float: left;
+            background-color: #FFFFFF;
+        }
+        .play-area li div{
+            transition: transform 0.3s ease-out;
+            position: absolute;
+            cursor: pointer;
+            width: 100px;
+            height: 75px;
+            top: 100px;
+            left: 0;
+            background-image: url("img/mole.png");
+            background-repeat: no-repeat;
+            border: none;
+        }
+        .play-area li div.dead{
+            transform:rotate(-180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="information-area">
+            <span class="information"><input type="button" value="スタート" id="start"/></span>
+            <span class="information"><span class="score">0</span>点</span>
+            <span class="information">残り<span class="time">0</span>秒</span>
+        </div>
+        <ul class="play-area">
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+            <li><div>&nbsp;</div></li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">
+
+</script>
+</html>

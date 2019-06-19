@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <style type="text/css">
+        body{
+            margin: 0;
+        }
+        .container{
+            position: relative;
+            height: 1000px;
+        }
+        .container a{
+            display: inline-block;
+            font-size: 30px;
+            font-weight: bold;
+            color: #FFFFFF;
+            padding: 30px;
+        }
+        .background1{
+            background-color: #2ECC71;
+        }
+        .background2{
+            background-color: #3498DB;
+        }
+        .background3{
+            background-color: #F39C12;
+        }
+        .navigator{
+            position: fixed;
+            top: 0px;
+            right: 0px;
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+            z-index: 100;
+        }
+        .navigator:after{
+            content: "."; 
+            display: block; 
+            height: 0; 
+            font-size:0;	
+            clear: both; 
+            visibility:hidden;
+        }
+        .navigator li{
+            float: left;
+            text-align:center;
+            border: solid 1px #808080;
+            width: 100px;
+            margin: 10px;
+            font-size: 13px;
+            line-height: 20px;
+            background-color: #FFFFFF;
+        }
+        .navigator li a{
+            box-sizing: border-box;
+            display: inline-block;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <ul class="navigator">
+        <li><a href="#container1">要素1へ</a></li>
+        <li><a href="#container2">要素2へ</a></li>
+        <li><a href="#container3">要素3へ</a></li>
+    </ul>
+    <div class="container background1">
+        <span><a name="container1">要素1</a></span>
+    </div>
+    <div class="container background2">
+        <span><a name="container2">要素2</a></span>
+    </div>
+    <div class="container background3">
+        <span><a name="container3">要素3</a></span>
+    </div>
+</body>
+<script type="text/javascript">
+
+</script>
+</html>
