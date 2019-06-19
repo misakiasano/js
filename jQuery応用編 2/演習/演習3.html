@@ -47,26 +47,28 @@
 LEIHAUOLI.PAGE1 = {};
 LEIHAUOLI.PAGE1.pullDown = {
     init : function(){
-           
+        this.bindEvent(); 
+        this.setParameters();
+    },
+    
+    setParameters : function(){
+        this.$contents = $('.contents')
+        this.displayNone = this.$contents.css('display','none');    
     },
     
     bindEvent : function(){
+        var myself = this;
+        $('#menu').on('click',function(){
+            console.log(myself.$contents.is(':visible'));
+            if(myself.$contents.is(':hidden')){
+                console.log(myself.$contents);
+                myself.$contents.show();
+            }else{
+                myself.$contents.hide();    
+            }                    
+        });        
         
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }  
     
 };
     
