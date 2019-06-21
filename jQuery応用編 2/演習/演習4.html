@@ -53,11 +53,8 @@ LEIHAUOLI.PAGE1.pullDown = {
     
     setParameters : function(){
         this.$contents = $('#contents')
-//        this.$contents.css('display','none');
-//        this.height = this.$contents.outerHeight();
         this.padingTop = this.$contents.css('paddingTop');
         this.padingBottom = this.$contents.css('padingBottom');
-        
     },
     
     bindEvent : function(){
@@ -72,26 +69,16 @@ LEIHAUOLI.PAGE1.pullDown = {
                 myself.setClose(); 
             }                    
         });        
-        
     },
     
     setOpen : function(){
-        var myself = this;
-
         this.$contents.slideDown(1000,function(){          
-   
         });
-        
     },
     
     setClose : function(){
-        var myself = this;
-//        this.$contents.css('overflow','hidden');
-        
         this.$contents.slideUp(1000,function(){   
         });
-  
-
     }
     
 };
