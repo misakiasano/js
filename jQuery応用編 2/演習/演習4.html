@@ -42,6 +42,71 @@
     </dl>
 </body>
 <script type="text/javascript">
+    
+var LEIHAUOLI = LEIHAUOLI || {};
+LEIHAUOLI.PAGE1 = {};
+LEIHAUOLI.PAGE1.pullDown = {
+    init : function(){
+        this.bindEvent(); 
+        this.setParameters();
+    },
+    
+    setParameters : function(){
+        this.$contents = $('#contents')
+//        this.$contents.css('display','none');
+//        this.height = this.$contents.outerHeight();
+        this.padingTop = this.$contents.css('paddingTop');
+        this.padingBottom = this.$contents.css('padingBottom');
+        
+    },
+    
+    bindEvent : function(){
+        var myself = this;
+        $('#menu').on('click',function(){
+            if(myself.$contents.is(':animated')){
+                return;  
+            }   
+            if(myself.$contents.is(':hidden')){
+                myself.setOpen();              
+            }else{
+                myself.setClose(); 
+            }                    
+        });        
+        
+    },
+    
+    setOpen : function(){
+        var myself = this;
 
+        this.$contents.slideDown(1000,function(){          
+   
+        });
+        
+    },
+    
+    setClose : function(){
+        var myself = this;
+//        this.$contents.css('overflow','hidden');
+        
+        this.$contents.slideUp(1000,function(){   
+        });
+  
+
+    }
+    
+};
+    
+    
+    
+    
+    
+$(function(){
+    LEIHAUOLI.PAGE1.pullDown.init();
+});    
+    
+    
+    
+    
+    
 </script>
 </html>

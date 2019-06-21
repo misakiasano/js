@@ -43,7 +43,7 @@
 </body>
 
 <script type="text/javascript">
-    var LEIHAUOLI = LEIHAUOLI || {};
+var LEIHAUOLI = LEIHAUOLI || {};
 LEIHAUOLI.PAGE1 = {};
 LEIHAUOLI.PAGE1.pullDown = {
     init : function(){
@@ -52,23 +52,56 @@ LEIHAUOLI.PAGE1.pullDown = {
     },
     
     setParameters : function(){
-        this.$contents = $('.contents')
-        this.displayNone = this.$contents.css('display','none');    
+        this.$contents = $('#contents')
+        this.displayNone = this.$contents.css('display','none');
+        this.height = this.$contents.outerHeight();
+        this.padingTop = this.$contents.css('paddingTop');
+        this.padingBottom = this.$contents.css('padingBottom');
+        
     },
     
     bindEvent : function(){
         var myself = this;
         $('#menu').on('click',function(){
-            console.log(myself.$contents.is(':visible'));
+            if(myself.$contents.is(':animated')){
+                return;  
+            }   
             if(myself.$contents.is(':hidden')){
-                console.log(myself.$contents);
-                myself.$contents.show();
+                myself.setOpen();              
             }else{
-                myself.$contents.hide();    
+                myself.setClose(); 
             }                    
         });        
         
-    }  
+    },
+    
+    setOpen : function(){
+        this.$contents.height(0);
+        this.$contents.css('paddingTop',0);
+        this.$contents.css('padingBottom',0);
+        this.$contents.css('overflow','hidden');
+        this.$contents.css('display','block');
+        this.$contents.css('overflow','');
+        this.$contents.animate({
+            height : this.height,
+            paddingTop : this.padingTop,
+            padingBottom : this.padingBottom
+        },1000, 'swing');
+
+    },
+    
+    setClose : function(){
+        this.$contents.css('overflow','hidden');
+        var myself = this;
+        this.$contents.animate({height : 0},1000, 'swing',function(){
+            myself.$contents.css('display','none');
+            myself.$contents.css('overflow','');
+            myself.$contents.css('padingTop','');
+            myself.$contents.css('padingBottom','');    
+        });
+  
+
+    }
     
 };
     

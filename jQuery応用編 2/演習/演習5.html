@@ -47,5 +47,53 @@
 </body>
 <script type="text/javascript">
 
+    var LEIHAUOLI = LEIHAUOLI || {};
+    LEIHAUOLI.PAGE1 = {};
+    LEIHAUOLI.PAGE1.accordion = {
+        init : function(){
+            this.setParameters();
+            this.bindEvent();
+        },
+        
+        setParameters : function(){
+            this.$button = $('dt');
+            this.$dd = $('dd')
+        },
+        
+        bindEvent : function(){
+            var self = this;
+            this.$button.on('click',function(){
+                var ddContent = $(this).next();
+                if(ddContent.is(':animated')){
+                    return;  
+                }
+                self.$dd.slideUp(1000)
+                if(ddContent.css('display') == 'none'){
+                    ddContent.slideDown(1000)  
+                }
+                                        
+            });   
+        },
+        
+        
+        
+        
+    };
+    
+    
+    
+    
+    
+   $(function(){
+    LEIHAUOLI.PAGE1.accordion.init();
+   }); 
+    
+    
+    
+    
+    
+    
+    
+    
 </script>
 </html>
