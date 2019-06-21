@@ -76,31 +76,36 @@ LEIHAUOLI.PAGE1.pullDown = {
     },
     
     setOpen : function(){
-        this.$contents.height(0);
-        this.$contents.css('paddingTop',0);
-        this.$contents.css('padingBottom',0);
-        this.$contents.css('overflow','hidden');
-        this.$contents.css('display','block');
-        this.$contents.css('overflow','');
+        this.$contents.css({
+            height: 0,
+            paddingTop: 0,
+            padingBottom: 0,
+            overflow: 'hidden',
+            display: 'block',
+        });
         this.$contents.animate({
             height : this.height,
             paddingTop : this.padingTop,
             padingBottom : this.padingBottom
-        },1000, 'swing');
-
+        },1000, 'swing', this.$contents.css('overflow',''));
     },
     
     setClose : function(){
-        this.$contents.css('overflow','hidden');
         var myself = this;
-        this.$contents.animate({height : 0},1000, 'swing',function(){
-            myself.$contents.css('display','none');
-            myself.$contents.css('overflow','');
-            myself.$contents.css('padingTop','');
-            myself.$contents.css('padingBottom','');    
+        this.$contents.css('overflow','hidden');
+        this.$contents.animate({
+            height : 0,
+            paddingTop: 0,
+            paddingBottom: 0
+            }, 1000, 'swing', function(){
+            myself.$contents.css({
+                display: 'none',
+                height: '',
+                paddingTop: '',
+                padingBottom: '',
+                overflow: ''
+            });
         });
-  
-
     }
     
 };
