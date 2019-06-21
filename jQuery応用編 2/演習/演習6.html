@@ -40,18 +40,43 @@
     
 var LEIHAUOLI = LEIHAUOLI || {};
 LEIHAUOLI.PAGE1 = {};
-LEIHAUOLI.PAGE1.load = {
+LEIHAUOLI.PAGE1.lazyLoad = {
     init : function(){
         this.setParameters();
         this.bindEvent();
     },
     
     setParameters : function(){
-                
+        this.$container =$('.container')
+        this.$img = $('img')
+//        this.imgTop = this.$img.offset().top;
+//        this.imgBottom = this.$img.offset().top + this.$img.height();
+        this.loadTop = $(window).scrollTop(); //表示範囲の上端
+        this.loadBottom = $(window).scrollTop() + $(window).height();//表示範囲の下端
+        this.loadLeft = $(window).scrollLeft();　//表示範囲の左端
+        this.loadRight = $(window).scrollLeft() + $(window).width();//表示範囲の右端
+        
     },
     
     bindEvent : function(){
-        
+        var self = this;
+        var imgLi = this.$container.find('li');
+            imgLi.each(function(){
+            var $element = $(this);
+            this.imgTop = $element.offset().top;
+            this.imgBottom = this.imgTop + $element.height();
+                console.log(this.imgBottom);
+            this.dataAttr = $element.attr('data-url');
+            this.srcAttr = $element.attr('src',this.dataAttr);
+            $(window).on('load resize scroll',function(){
+                console.log(self.imgBottom);
+                    if(self.imgTop >= self.loadTop && self.imgBottom <= self.loadBottom 
+                       || self.imgTop <= self.loadTop && self.imgBottom >= self.loadBottom){
+                        console.log('if');
+                        $element.animate({opacity :1},1000);
+                };
+            });
+        });
     }
     
       
@@ -59,7 +84,7 @@ LEIHAUOLI.PAGE1.load = {
     
     
 $(function(){
-    LEIHAUOLI.PAGE1.load.init();
+    LEIHAUOLI.PAGE1.lazyLoad.init();
 }); 
         
     
