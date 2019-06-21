@@ -49,12 +49,6 @@ LEIHAUOLI.PAGE1.lazyLoad = {
     setParameters : function(){
         this.$container =$('.container')
         this.$img = $('img')
-//        this.imgTop = this.$img.offset().top;
-//        this.imgBottom = this.$img.offset().top + this.$img.height();
-        this.loadTop = $(window).scrollTop(); //表示範囲の上端
-        this.loadBottom = $(window).scrollTop() + $(window).height();//表示範囲の下端
-        this.loadLeft = $(window).scrollLeft();　//表示範囲の左端
-        this.loadRight = $(window).scrollLeft() + $(window).width();//表示範囲の右端
         
     },
     
@@ -64,18 +58,24 @@ LEIHAUOLI.PAGE1.lazyLoad = {
             imgLi.each(function(){
                 var $element = $(this);
                 var imgTop = $element.offset().top;
-                self.imgBottom = self.imgTop + $element.height();
-//                console.log(self.imgTop );
-                sele.imgFind = $element.find('img');
-                self.dataAttr = sele.imgFind.attr('data-url');
-                self.srcAttr = $element.attr('src',self.dataAttr);
-                console.log(self.dataAttr);
+                var imgBottom = imgTop + $element.height();
+                var loadTop = $(window).scrollTop();
+                var loadBottom = $(window).scrollTop() + $(window).height();
+                var imgFind = $element.find('img');
+                var dataAttr = imgFind.attr('data-url');
+                
+                
                 $(window).on('load resize scroll',function(){
-                    console.log(imgTop);
-                    if(self.imgTop >= self.loadTop && self.imgBottom <= self.loadBottom 
-                       || self.imgTop <= self.loadTop && self.imgBottom >= self.loadBottom){
-                        $element.animate({opacity :1},1000);
-                };
+                    var loadTop = $(window).scrollTop();
+                    var loadBottom = $(window).scrollTop() + $(window).height();
+                    if(imgTop >= loadTop && imgBottom <= loadBottom 
+                    || imgTop <= loadTop && imgBottom >= loadBottom && imgFind.css('opacity') == 0){
+                        imgFind.attr('src',dataAttr);
+                        imgFind.on('load',function(){
+                            imgFind.animate({opacity :1},1000);
+                        });
+                    }
+    
             });
         });
     }
