@@ -62,17 +62,18 @@ LEIHAUOLI.PAGE1.lazyLoad = {
         var self = this;
         var imgLi = this.$container.find('li');
             imgLi.each(function(){
-            var $element = $(this);
-            this.imgTop = $element.offset().top;
-            this.imgBottom = this.imgTop + $element.height();
-                console.log(this.imgBottom);
-            this.dataAttr = $element.attr('data-url');
-            this.srcAttr = $element.attr('src',this.dataAttr);
-            $(window).on('load resize scroll',function(){
-                console.log(self.imgBottom);
+                var $element = $(this);
+                var imgTop = $element.offset().top;
+                self.imgBottom = self.imgTop + $element.height();
+//                console.log(self.imgTop );
+                sele.imgFind = $element.find('img');
+                self.dataAttr = sele.imgFind.attr('data-url');
+                self.srcAttr = $element.attr('src',self.dataAttr);
+                console.log(self.dataAttr);
+                $(window).on('load resize scroll',function(){
+                    console.log(imgTop);
                     if(self.imgTop >= self.loadTop && self.imgBottom <= self.loadBottom 
                        || self.imgTop <= self.loadTop && self.imgBottom >= self.loadBottom){
-                        console.log('if');
                         $element.animate({opacity :1},1000);
                 };
             });
