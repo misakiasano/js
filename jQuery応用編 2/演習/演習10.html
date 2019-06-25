@@ -39,6 +39,74 @@
     </div>
 </body>
 <script type="text/javascript">
+    
+    
+    
+    var LEIHAUOLI = LEIHAUOLI || {};
+    LEIHAUOLI.PAGE1 = {};
+    LEIHAUOLI.PAGE1.tooltip = {
+        init : function(){
+            this.setParameters();
+            this.bindEvent();
+        },
+        setParameters : function(){
+            this.$container = $('.container');
+            this.tooltipTarget = this.$container.find('.tooltip-target');
+//            this.$div = $('<div>');
+//            this.$div.addClass('tooltip');
+//            this.bodyDiv = $('body').append(this.$div);
+            
+            
+        },
+        bindEvent : function(){
+            var self = this;
+            this.tooltipTarget.each(function(){
+                var $element = $(this);
+                var $div = $('<div>');
+                $div.addClass('tooltip');
+                var bodyDiv = $('body').append($div);
+                $element.on('mouseover',function(){
+                    var dataText = $element.attr('data-text');
+                    console.log($div)
+                    console.log($div.html(dataText));
+                    
+                    var position = $element.position();
+                    $div = position;
+                    
+                });
+                $element.on('mouseout',function(){
+                    
+                });
+                
+                
+                
 
+                var position = $element.position();
+                
+                
+                
+                
+             
+            
+            }); 
+        }
+                                    
+        
+    }
+    
+    $(function(){
+        LEIHAUOLI.PAGE1.tooltip.init();
+    }); 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </script>
 </html>
