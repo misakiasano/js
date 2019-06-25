@@ -52,9 +52,9 @@
         setParameters : function(){
             this.$container = $('.container');
             this.tooltipTarget = this.$container.find('.tooltip-target');
-//            this.$div = $('<div>');
-//            this.$div.addClass('tooltip');
-//            this.bodyDiv = $('body').append(this.$div);
+            this.$div = $('<div>');
+            this.$div.addClass('tooltip');
+            this.bodyDiv = $('body').append(this.$div);
             
             
         },
@@ -62,30 +62,23 @@
             var self = this;
             this.tooltipTarget.each(function(){
                 var $element = $(this);
-                var $div = $('<div>');
-                $div.addClass('tooltip');
-                var bodyDiv = $('body').append($div);
-                $element.on('mouseover',function(){
+                $element.on('mouseover',function(){  
                     var dataText = $element.attr('data-text');
-                    console.log($div)
-                    console.log($div.html(dataText));
-                    
-                    var position = $element.position();
-                    $div = position;
-                    
+                    self.$div.html(dataText);
+                    var positionLeft = $element.offset().left;
+                    var positionTop = $element.offset().top;
+                    self.$div.css({'left':positionLeft, 'top':positionTop + 30});
+                    if(self.$div.is(':animated')){
+                        return;  
+                    } 
+                    self.$div.stop();
+                    self.$div.fadeIn(200);
+                   
                 });
                 $element.on('mouseout',function(){
+                    self.$div.fadeOut(200); 
                     
                 });
-                
-                
-                
-
-                var position = $element.position();
-                
-                
-                
-                
              
             
             }); 
