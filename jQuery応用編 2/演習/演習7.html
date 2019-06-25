@@ -36,6 +36,55 @@
 </ul>
 </body>
 <script type="text/javascript">
+    
+    
+    var LEIHAUOLI = LEIHAUOLI || {};
+    LEIHAUOLI.PAGE1 = {};
+    LEIHAUOLI.PAGE1.lazyLoad = {
+        init : function(){
+            this.setParameters();
+            this.bindEvent();
+        },
+        
+        setParameters : function(){
+            this.$container =$('.container')
+            this.$img = $('img')
+        },
+        
+        bindEvent : function(){
+            var self = this;
+            var imgLi = this.$container.find('li');
+            imgLi.each(function(){
+                var $element = $(this);
+                var imgTop = $element.offset().top;
+                var imgBottom = imgTop + $element.height();
+                var loadTop = $(window).scrollTop();
+                var loadBottom = $(window).scrollTop() + $(window).height();
+                var imgContent = $element.children('img');
+                var dataAttr = imgContent.attr('data-url');
+               
+                
+                $(window).on('load resize scroll',function(){
+                    var loadTop = $(window).scrollTop();
+                    var loadBottom = $(window).scrollTop() + $(window).height();
+                    if(imgTop >= loadTop && imgBottom <= loadBottom 
+                    || imgTop <= loadTop && imgBottom >= loadBottom && $element.is(':visible')){
+                        imgContent.attr('src',dataAttr);
+                        imgContent.fadeIn(1000)
+                    }
+    
+                });
+            });
+
+
+        }
+        
+    };
+
+
+    $(function(){
+        LEIHAUOLI.PAGE1.lazyLoad.init();
+    }); 
 
 </script>
 </html>

@@ -81,6 +81,57 @@
     </div>
 </body>
 <script type="text/javascript">
-
+    var LEIHAUOLI = LEIHAUOLI || {};
+    LEIHAUOLI.PAGE1 = {};
+    LEIHAUOLI.PAGE1.smoothScroll = {
+        init : function(){
+            this.setParameters();
+            this.bindEvent();
+        },
+        
+        setParameters : function(){
+            this.$navigator = $('.navigator')
+            this.imgLi = this.$navigator.find('li');
+            
+        
+        },
+        
+        bindEvent : function(){
+            var myself = this;
+            this.imgLi.each(function(){
+                var $element = $(this);
+                var link = $element.children('a');
+                var href = link.attr('href');
+                var hrefReplace = href.replace('#','');
+                var name = $('a[name="' + hrefReplace + '"]');
+                var position = name.offset().top;
+                link.on('click',function(event){
+                    event.preventDefault();
+                    link = position;
+                    $('html,body').animate({scrollTop:position},500);  
+                }); 
+                 
+                
+                
+            });
+                
+                
+                 
+        
+        }
+        
+        
+    };
+    
+    
+    $(function(){
+        LEIHAUOLI.PAGE1.smoothScroll.init();
+    }); 
+    
+    
 </script>
 </html>
+
+
+
+

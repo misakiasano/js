@@ -76,17 +76,21 @@ LEIHAUOLI.PAGE1.pullDown = {
     },
     
     setOpen : function(){
+        var myself = this;
         this.$contents.height(0);
-        this.$contents.css('paddingTop',0);
-        this.$contents.css('padingBottom',0);
-        this.$contents.css('overflow','hidden');
-        this.$contents.css('display','block');
-        this.$contents.css('overflow','');
+        this.$contents.css({
+            'paddingTop':0,
+            'padingBottom':0,
+            'overflow':'hidden',
+            'display':'block',
+        });
         this.$contents.animate({
             height : this.height,
             paddingTop : this.padingTop,
             padingBottom : this.padingBottom
-        },1000, 'swing');
+        },1000, 'swing',function(){
+            myself.$contents.css('overflow','');    
+        });
 
     },
     
