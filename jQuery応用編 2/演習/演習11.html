@@ -82,11 +82,9 @@
                         return;  
                     } 
                     if(tooltipRigth > right){
-                        console.log('if')
                         positionLeft =  right - tooltipWidth; 
                         self.$div.css({'left':positionLeft, 'top':positionTop + 30});
                     }else if(tooltipBottom > bottom){
-                        console.log('else if')
                         positionTop = positionTop - tooltipHight - 10
                         self.$div.css({'left':positionLeft, 'top':positionTop - 30});
                     }
