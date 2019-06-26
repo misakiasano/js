@@ -70,10 +70,13 @@
                     if(imgTop >= loadTop && imgBottom <= loadBottom 
                     || imgTop <= loadTop && imgBottom >= loadBottom && $element.is(':visible')){
                         imgContent.attr('src',dataAttr);
-                        imgContent.fadeIn(1000)
+                        imgContent.on('load',function(){
+                            imgContent.fadeIn(1000);
+                        });
                     }
     
                 });
+                
             });
 
 

@@ -39,6 +39,94 @@
     </div>
 </body>
 <script type="text/javascript">
+    
+    
+    var LEIHAUOLI = LEIHAUOLI || {};
+    LEIHAUOLI.PAGE1 = {};
+    LEIHAUOLI.PAGE1.tooltip = {
+        init : function(){
+            this.setParameters();
+            this.bindEvent();   
+        },
+        setParameters : function(){
+            this.$container = $('.container');
+            this.tooltipTarget = this.$container.find('.tooltip-target');
+            this.$div = $('<div>');
+            this.$div.addClass('tooltip');
+            this.bodyDiv = $('body').append(this.$div);
+               
+        },
+        bindEvent : function(){
+            var self = this;
+            this.tooltipTarget.each(function(){
+                var $element = $(this);
+                $element.on('mouseover',function(){  
+                    var dataText = $element.attr('data-text');
+                    self.$div.html(dataText);
+                    
+                    var positionLeft = $element.offset().left;
+                    var positionTop = $element.offset().top;
+                    
+                    
+                    var tooltipTop = self.$div.offset().top;
+                    var tooltipHight = self.$div.height();
+                    var tooltipWidth = self.$div.width();
+                    var tooltipBottom = tooltipTop + tooltipHight;
+                    var tooltipRigth = positionLeft + tooltipWidth;
+                    //ツールチップ
+                    var top = $(window).scrollTop();
+                    var bottom = $(window).scrollTop() + $(window).height();
+                    var left = $(window).scrollLeft();
+                    var right = $(window).scrollLeft() + $(window).width();
+                    ;
+                    //表示範囲
+//                    self.$div.stop();
+                    self.$div.css({'left':positionLeft, 'top':positionTop + 50});
+                    if(tooltipRigth > right){
+                        console.log('if')
+                        positionLeft =  right -  tooltipWidth; 
+                        self.$div.css({'left':positionLeft-20, 'top':positionTop + 30});
+                    }else if(tooltipBottom > bottom){
+                        console.log('else if')
+                        positionTop = tooltipTop - tooltipHight - 80
+                        self.$div.css({'left':positionLeft, 'top':positionTop});
+                    }
+//                        console.log('else')
+                        self.$div.stop();
+                        self.$div.fadeIn(200);       
+                    
+                });
+                $element.on('mouseout',function(){
+                    self.$div.fadeOut(200); 
+                });
+            });
+            
+        }
+        
+        
+        
+        
+    };
+    
+    
+    $(function(){
+        LEIHAUOLI.PAGE1.tooltip.init();
+    }); 
+    
+    
+    
 
 </script>
 </html>
+
+
+<!--
+    表示範囲の上端　　　$(window).scrollTop();
+
+    表示範囲の下端     $(window).scrollTop() + $(window).height();
+
+    表示範囲の左端     $(window).scrollLeft();
+
+    表示範囲の右端     $(window).scrollLeft() + $(window).width();
+
+-->
