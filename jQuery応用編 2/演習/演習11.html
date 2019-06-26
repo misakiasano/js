@@ -66,33 +66,30 @@
                     
                     var positionLeft = $element.offset().left;
                     var positionTop = $element.offset().top;
-                    
-                    
-                    var tooltipTop = self.$div.offset().top;
-                    var tooltipHight = self.$div.height();
-                    var tooltipWidth = self.$div.width();
-                    var tooltipBottom = tooltipTop + tooltipHight;
-                    var tooltipRigth = positionLeft + tooltipWidth;
                     //ツールチップ
+                    var tooltipHight = self.$div.height();
+                    var tooltipWidth = self.$div.innerWidth();
+                    var tooltipBottom = positionTop + tooltipHight + 30;
+                    var tooltipRigth = positionLeft + tooltipWidth;
+                    //表示範囲
                     var top = $(window).scrollTop();
                     var bottom = $(window).scrollTop() + $(window).height();
                     var left = $(window).scrollLeft();
                     var right = $(window).scrollLeft() + $(window).width();
-                    ;
-                    //表示範囲
-//                    self.$div.stop();
-                    self.$div.css({'left':positionLeft, 'top':positionTop + 50});
+                 
+                    self.$div.css({'left':positionLeft, 'top':positionTop + 40});
+                    if(self.$div.is(':animated')){
+                        return;  
+                    } 
                     if(tooltipRigth > right){
                         console.log('if')
-                        positionLeft =  right -  tooltipWidth; 
-                        self.$div.css({'left':positionLeft-20, 'top':positionTop + 30});
+                        positionLeft =  right - tooltipWidth; 
+                        self.$div.css({'left':positionLeft, 'top':positionTop + 30});
                     }else if(tooltipBottom > bottom){
                         console.log('else if')
-                        positionTop = tooltipTop - tooltipHight - 80
-                        self.$div.css({'left':positionLeft, 'top':positionTop});
+                        positionTop = positionTop - tooltipHight - 10
+                        self.$div.css({'left':positionLeft, 'top':positionTop - 30});
                     }
-//                        console.log('else')
-                        self.$div.stop();
                         self.$div.fadeIn(200);       
                     
                 });
@@ -120,13 +117,4 @@
 </html>
 
 
-<!--
-    表示範囲の上端　　　$(window).scrollTop();
 
-    表示範囲の下端     $(window).scrollTop() + $(window).height();
-
-    表示範囲の左端     $(window).scrollLeft();
-
-    表示範囲の右端     $(window).scrollLeft() + $(window).width();
-
--->
