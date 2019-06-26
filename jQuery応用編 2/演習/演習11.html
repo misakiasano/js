@@ -88,10 +88,12 @@
                         positionTop = positionTop - tooltipHight - 10
                         self.$div.css({'left':positionLeft, 'top':positionTop - 30});
                     }
+//                        self.$div.stop();
                         self.$div.fadeIn(200);       
                     
                 });
                 $element.on('mouseout',function(){
+//                    self.$div.stop();
                     self.$div.fadeOut(200); 
                 });
             });
