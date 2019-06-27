@@ -103,6 +103,46 @@
 </ul>
 </body>
 <script type="text/javascript">
-
+      var LEIHAUOLI = LEIHAUOLI || {};
+    LEIHAUOLI.PAGE1 = {};
+    LEIHAUOLI.PAGE1.content = {
+        init : function(){
+            this.setParameters();
+            this.bindEvent();
+        },    
+        setParameters : function(){
+            this.$container = $('.container');
+            this.first = $('li:first')
+            this.topPosition = this.first.offset().top;
+            this.li = this.$container.find('li')
+            
+            this.containerLength = this.$container.length;
+        },
+         bindEvent : function(){
+             var self = this;
+             this.li.each(function(){
+                 var $element = $(this);
+                 var elementTop = $element.offset().top;
+           
+                if(self.containerLength > 0){
+                    self.$container.filter(function(){
+                        var sameTop1 = self.topPosition == elementTop;
+                        console.log(sameTop1);
+                        return sameTop1;
+                    });   
+                    
+                } 
+            });
+        }  
+    };
+    
+     $(function(){
+        LEIHAUOLI.PAGE1.content.init();
+    });
+    
+    
+    
+    
+    
 </script>
 </html>

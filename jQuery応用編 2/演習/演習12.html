@@ -121,16 +121,15 @@
             var self = this;
             this.findLi.each(function(){
                 var $element = $(this);
-//                console.log($element)
                 var liHight = $element.height();
-//                console.log(liHight)
                 if(self.height < liHight){
-                        self.height = liHight;
-                   }
-//                self.height = self.height ;
-                $element.height(self.height);
+                    self.height = liHight;
+                }
+              
+               
             }); 
-            
+             this.findLi.height(self.height);
+                
         }
         
         
