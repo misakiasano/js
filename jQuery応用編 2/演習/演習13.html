@@ -113,42 +113,38 @@
         setParameters : function(){
             this.$container = $('.container');
             this.li = this.$container.find('li')
-            console.log(this.li)
-            this.big = 0;
+            
             
             
             
         },
          bindEvent : function(){
              var self = this;
-             
              for(;this.li.length > 0;){
-                 console.log(this.li.length);
-                    var firstLiPosition = this.li.offset().top;
-                    var first = this.li.filter(function(){
-                        var $element = $(this);
-                        var Liposition = $element.offset().top;
-                        var topPosition = firstLiPosition == Liposition;
-                        return topPosition;
-                    })
-                 
-                    first.each(function(){
-                        var $myself = $(this);
-                        var height = $myself.height();
-                        if(height > self.big){
-                            self.big = height;              
-                        }
-                    });
-                 first.height(self.big);
+                var firstLiPosition = this.li.offset().top;
+                var first = this.li.filter(function(){
+                    var $element = $(this);
+                    var Liposition = $element.offset().top;
+                    var topPosition = firstLiPosition == Liposition;
+                    return topPosition;
+                })
+                var big = 0;
+                first.each(function(){
+                    var $myself = $(this);
+                    var height = $myself.height();
+                    if(height > big){
+                        big = height;              
+                    }
+                });
+                first.height(big);
                     
-                    var wrong = this.li.filter(function(){
-                        var $element = $(this);
-                        var Liposition = $element.offset().top;
-                        var wrong = firstLiPosition != Liposition;
-                        return wrong;
-                    })
-                 console.log(wrong.length);
-                 this.li = wrong;
+                var wrong = this.li.filter(function(){
+                    var $element = $(this);
+                    var Liposition = $element.offset().top;
+                    var wrong = firstLiPosition != Liposition;
+                    return wrong;
+                })
+                this.li = wrong;
                  
              }
              
@@ -157,9 +153,9 @@
              
     };
     
-       $(function(){
-           LEIHAUOLI.PAGE1.content.init();
-        });
+    $(function(){
+        LEIHAUOLI.PAGE1.content.init();
+    });
    
     
     
