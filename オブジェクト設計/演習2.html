@@ -170,7 +170,7 @@ LEIHAUOLI.PAGE1.Carousel.prototype = {
     },
     
 
-    bindEvent : function(){
+    bindEvent : function(){　
         
         this.$btnNext.on('click',this.slideToNext.bind(this));
         this.$btnPrevious.on('click',this.slideToPrevious.bind(this));
@@ -182,7 +182,7 @@ LEIHAUOLI.PAGE1.Carousel.prototype = {
                 myself.currentIndex = index;
                 myself.moveContainer();    
             });
-        });
+        });  
     },
     
   
