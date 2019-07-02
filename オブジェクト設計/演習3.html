@@ -91,59 +91,48 @@
 <script>
     var LEIHAUOLI = LEIHAUOLI || {};
     LEIHAUOLI.PAGE1 = {};
-    LEIHAUOLI.PAGE1.mainChart = {
+    LEIHAUOLI.PAGE1.mainPageNation = {
         init : function(){
             var myself = this;
-            this.subChart = [];
+            this.subPageNation = [];
             
             $('.pagination-container').each(function(){
-                myself.subChart.push(new LEIHAUOLI.PAGE1.subChart($(this),myself));    
+                myself.subPageNation.push(new LEIHAUOLI.PAGE1.subPageNation($(this),myself));    
             });   
         }, 
         
-        relaySubCharts : function(subThis){
-            for(var i = 0; i < this.subChart.length; i++){
-                this.subChart[i].receiveSubChart(subThis); 
+        relaySubPageNations : function(subThis){
+            for(var i = 0; i < this.subPageNation.length; i++){
+                this.subPageNation[i].receiveSubPageNation(subThis); 
             }    
         }  
     };
-    
 
-    
-    
-    LEIHAUOLI.PAGE1.subChart = function($paginationContainer,mainChart){
+
+    LEIHAUOLI.PAGE1.subPageNation = function($paginationContainer,mainPageNation){
         this.$paginationContainer = $paginationContainer;
-        this.mainChart = mainChart;
+        this.mainPageNation = mainPageNation;
         this.init();
-        
     };
     
-    LEIHAUOLI.PAGE1.subChart.prototype = {
-    
-    
+    LEIHAUOLI.PAGE1.subPageNation.prototype = {
         init : function(){
             this.setParameters();
             this.bindEvent();
-            this.setPaginationClick();
-              
         },
         
-        sendSubChart : function(){
+        sendSubPageNation : function(){
             var subThis = this;
-            this.mainChart.relaySubCharts(subThis);    
+            this.mainPageNation.relaySubPageNations(subThis);    
         },
         
-        receiveSubChart : function(subChart){
-            this.currentIndex = subChart.currentIndex;
+        receiveSubPageNation : function(subPageNation){
+            this.currentIndex = subPageNation.currentIndex;
             if(this.liLength - 1 < this.currentIndex){
                return;
             }
             this.setArrow();
             this.setPaginationMove();
-            
-            
-           
-            
         },
         
         setParameters : function(){　
@@ -153,37 +142,34 @@
             this.liLength = this.paginationLi.length;
             this.lastPage = this.liLength - 1;
             this.currentIndex = 0;
-            
         },
         
         bindEvent: function(){
             var self = this;
             this.rightBtn.on('click',this.setRightBtn.bind(this)); 
             this.leftBtn.on('click',this.setLeftBtn.bind(this));
-        
+            this.paginationLi.each(function(index){
+                var $elemens = $(this);
+                $elemens.on('click',function(event){
+                    event.preventDefault();
+                    self.currentIndex = index;
+                    self.sendSubPageNation();
+                });
+            });
         },
         
         setRightBtn : function(event){
             event.preventDefault();
-            if(this.currentIndex == this.lastPage){
-                return;   
-            }
+            if(this.currentIndex == this.lastPage) return;
             this.currentIndex++;
-            this.sendSubChart();
-            this.setPaginationMove();
-            this.setArrow();    
-           
+            this.sendSubPageNation();
         },
         
         setLeftBtn : function(event){
             event.preventDefault();
-            if(this.currentIndex == 0){
-                return;   
-            }
+            if(this.currentIndex == 0) return;
             this.currentIndex--;
-            this.sendSubChart();
-            this.setPaginationMove();
-            this.setArrow();    
+            this.sendSubPageNation();
         },
         
         setArrow : function(){
@@ -200,9 +186,6 @@
             } 
         },
         
-        
-        
-        
         setPaginationMove : function(){
             var self = this;
             this.paginationLi.each(function(index){
@@ -212,29 +195,8 @@
                 }else{
                     $elemens.removeClass('active');   
                 }
-                    
-                   
             });    
-        },
-        
-        setPaginationClick : function(){
-            var self = this;
-            this.paginationLi.each(function(index){
-            var $elemens = $(this);
-            $elemens.on('click',function(event){
-                event.preventDefault();
-                self.currentIndex = index;
-                self.setPaginationMove();
-                self.setArrow();
-                });
-            });
-            
         }
-        
-        
-        
-        
-        
     };
     
  
@@ -243,7 +205,7 @@
     
     
      $(function(){
-        LEIHAUOLI.PAGE1.mainChart.init();
+        LEIHAUOLI.PAGE1.mainPageNation.init();
     });
     
     
