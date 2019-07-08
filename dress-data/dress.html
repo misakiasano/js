@@ -5,6 +5,10 @@
         <title> HOT PEPPER Beuty </title>
         <link rel="stylesheet" href="reset.css">
         <link rel="stylesheet" href="style.css">
+        <script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  crossorigin="anonymous"></script>
     </head>
     <body>
         <header>
@@ -25,7 +29,7 @@
         </header>
         <div class="top-background">
             <div class="top-wrapper">
-                <h1 class="party-dress"><img src="images/top/title.png"></h1>
+                <h1 class="party-dress"><img src="images/top/title.png" alt="パティードレス"></h1>
                 <aside class="subtitle">オンラインレンタルドレスカタログ</aside>
                 <ul class="rental-btn">
                     <li><a href="#" class="top-btn">レンタルの流れ</a></li>
@@ -34,91 +38,248 @@
             </div>
         </div>
 
-
-
-
-    <section class="special-wrapper">
-        <h2 class="special-logo">
-            <img src="images/top/speciallace.svg" alt="スペシャル">
-        </h2>
-        <div class="carousel-wrapper">
-            <ul class="container">
-                <li><img src="images/top/special1.png" alt="マタニティードレス"></li>
-                <li><img src="images/top/special2.png" alt="体系別ドレス"></li>
-                <li><img src="images/top/special3.png" alt="お呼ばれドレス"></li>
-            </ul>
-            <a href="#" class="previous trigger-right disabled"></a>
-            <a href="#" class="next trigger-left"></a>
-       </div>
-       <ul class="indicator-wrapper">
-            <li><a href="#" class="current"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-       </ul>
-    </section>
+        <section class="special-wrapper">
+            <h2 class="special-logo">
+                <img src="images/top/speciallace.svg" alt="スペシャル">
+            </h2>
+            <div class="carousel-wrapper">
+                <ul class="container">
+                    <li><img src="images/top/special1.png" alt="マタニティードレス"></li>
+                    <li><img src="images/top/special2.png" alt="体系別ドレス"></li>
+                    <li><img src="images/top/special3.png" alt="お呼ばれドレス"></li>
+                </ul>
+                <a href="#" class="previous trigger-right disabled"></a>
+                <a href="#" class="next trigger-left"></a>
+           </div>
+           <ul class="indicator-wrapper">
+                <li><a href="#" class="current"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+           </ul>
+        </section>
         
-    <section class="dress">
-        <h2 class="special-logo">
-            <img src="images/top/dresslace.svg" alt="ドレス">
-        </h2>
-        <div class="dress-wrapper">
-            
-            
-        <div class="dress-container">
-        <ul class="tab-selector">
-            <li class="selected selector1"><a href="#container1">カラー・サイズで探す</a></li>
-            <li class="selector2"><a href="#container2">シーン別で探す</a></li>
-        </ul>
-                
-        <ul class="tab-container">
-        <li id="container1" class="selected">
-            <p class="tub-check">カラー</p>
-            <p class="tab-font"><label><input type="checkbox" name="color" value="cold">寒色系</label></p>
-            <p class="tab-font"><label><input type="checkbox" name="color" value="warm">暖色系</label></p>
-            <p class="tab-font"><label><input type="checkbox" name="color" value="black">黒</label></p>
-            <p class="tab-font"><label><input type="checkbox" name="color" value="other">その他</label></p>
-            <p class="tub-check">サイズ</p>
-            <p class="tab-font"><label><input type="checkbox" name="size" value="s-size">S</label></p>
-            <p class="tab-font"><label><input type="checkbox" name="size" value="m-size">M</label></p>
-            <p class="tab-font"><label><input type="checkbox" name="size" value="l-size">L</label></p>
-            <button type="button" name="検索" form="">検索</button>
-        </li>
-        <li id="container2">
-            <p class="tub-check">サイズ</p>
-            <p><label><input type="radio" name="another" value="maternity">マタニティ</label></p>
-            <p><label><input type="radio" name="another" value="daytime">昼のパーティ</label></p>
-            <p><label><input type="radio" name="another" value="night">夜のパーティ</label></p>
-            <p><label><input type="radio" name="another" value="resort">リゾート</label></p>
-            <p><label><input type="radio" name="another" value="formal">フォーマル</label></p>
-            <button type="button" name="検索" form="">検索</button>
-        </li>
-    </ul>
-</div>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-         
-        </div>
-    </section>
-    
-        
-        
-        
-        
-            <footer>
-
-            </footer>
-           
+        <section class="dress">
+            <h2 class="special-logo">
+                <img src="images/top/dresslace.svg" alt="ドレス">
+            </h2>
+            <div class="dress-wrapper">
+                <div class="dress-miniwrapper">    
+                    <div class="dress-container">
+                        <ul class="tab-selector">
+                            <li class="selector1 selected"><a href="#container1"><p>カラー・サイズ</p><p>で探す</p></a></li>
+                            <li class="selector2"><a href="#container2"><p>シーン別</p><p>で探す</p></a></li>
+                        </ul>
+                        <ul class="tab-container">
+                            <li id="container1" class="selected">
+                                <p class="tub-check">カラー</p>
+                                <label>
+                                    <input type="checkbox" name="color" class="checkbox01">
+                                    <span class="checkbox01-check">寒色系</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="color" class="checkbox01">
+                                    <span class="checkbox01-check">暖色系</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="color" class="checkbox01">
+                                    <span class="checkbox01-check">黒</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="color" class="checkbox01">
+                                    <span class="checkbox01-check">その他</span>
+                                </label>
+                                
+                                <p class="tub-check">サイズ</p>
+                                <label>
+                                    <input type="checkbox" name="size" class="checkbox01">
+                                    <span class="checkbox01-check">S</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="size" class="checkbox01">
+                                    <span class="checkbox01-check">M</span>
+                                </label>
+                                 <label>
+                                    <input type="checkbox" name="size" class="checkbox01">
+                                    <span class="checkbox01-check">L</span>
+                                </label>
+                                
+                                <button class="search" type="submit" name="検索">検索</button>
+                            </li>
+                            
+                            <li id="container2">
+                                <p class="tub-check">サイズ</p>
+                                <input type="radio" name="another" class="radio-01" id="radio01-01">
+                                <label for="radio01-01">マタニティ</label>
+                                <input type="radio" name="another" class="radio-01" id="radio01-02">
+                                <label for="radio01-02">昼のパーティー</label>
+                                <input type="radio" name="another" class="radio-01" id="radio01-03">
+                                <label for="radio01-03">夜のパーティー</label>
+                               <input type="radio" name="another" class="radio-01" id="radio01-04">
+                                <label for="radio01-04">リゾート</label>
+                               <input type="radio" name="another" class="radio-01" id="radio01-05">
+                                <label for="radio01-05">フォーマル</label>
+                                <button class="search" type="submit" name="検索">検索</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="search_information">
+                        <p class="search-color-size">
+                            <span class="color-selection">カラー : 選択無し</span>
+                            <span class="size-selection">サイズ : S/M</span>
+                        </p>
+                        <p class="search-clothes">
+                            <span class="dress-count">55</span>
+                            <span class="count-font">着あります</span>
+                        </p>
+                    </div>
+                    <figure class="dress-figure">
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                        <dl>
+                            <dt>
+                                <img src="images/top/dresseimg.png" alt="ドレス">
+                            </dt>
+                            <dd>Rental : ¥15,336(税込)</dd>
+                            <dd>Size : <span>S</span></dd>
+                        </dl>
+                    </figure>
+                    <div class="pagination-container">
+                        <a href="#" class="preview disabled">◀︎</a>
+                        <ul class="pagination">
+                            <li class="active"><a href="1">1</a></li>
+                            <li><a href="2">2</a></li>
+                            <li><a href="3">3</a></li>
+                            <li><a href="4">4</a></li>
+                            <li><a href="5">5</a></li>
+                            <li><a href="6">6</a></li>
+                            <li><a href="7">7</a></li>
+                            <li><a href="8">8</a></li>
+                            <li><a href="9">9</a></li>
+                            <li><a href="10">10</a></li>
+                            <li><a href="10">11</a></li>
+                            <li><a href="10">12</a></li>
+                        </ul>
+                        <a href="#" class="next">▶︎</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="footer-wrapper">
+                <img class="footer-logo" src="images/top/footerlogo.png" alt="リクルートグループサイト">
+                <ul class="footer-list">
+                    <li><a href="#">リクルートID規約</a></li>
+                    <li><a href="#">利用規約</a></li>
+                    <li><a href="#">プライバシーポリシー</a></li>
+                    <li><a href="#">ご利用ガイド</a></li>
+                    <li><a href="#">ヘルプ</a></li>
+                </ul>
+            </div>
+        </footer>
+        <script type="text/javascript" src="tab.js"></script>
+        <script type="text/javascript" src="pagination.js"></script>
     </body>
 </html>
