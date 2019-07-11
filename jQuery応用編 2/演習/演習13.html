@@ -111,8 +111,8 @@
             this.bindEvent();
         },    
         setParameters : function(){
-            this.$container = $('.container');
-            this.li = this.$container.find('li')
+            var $container = $('.container');
+            this.li = $container.find('li')
             
             
             
@@ -122,29 +122,28 @@
              var self = this;
              for(;this.li.length > 0;){
                 var firstLiPosition = this.li.offset().top;
-                var first = this.li.filter(function(){
+                var firstColumn = this.li.filter(function(){
                     var $element = $(this);
                     var Liposition = $element.offset().top;
-                    var topPosition = firstLiPosition == Liposition;
-                    return topPosition;
+                    return firstLiPosition == Liposition;
                 })
-                var big = 0;
-                first.each(function(){
+                var bigWidth = 0;
+                firstColumn.each(function(){
                     var $myself = $(this);
                     var height = $myself.height();
-                    if(height > big){
-                        big = height;              
+                    if(height > bigWidth){
+                        bigWidth = height;              
                     }
                 });
-                first.height(big);
+                firstColumn.height(bigWidth);
                     
-                var wrong = this.li.filter(function(){
+                this.li = this.li.filter(function(){
                     var $element = $(this);
                     var Liposition = $element.offset().top;
                     var wrong = firstLiPosition != Liposition;
                     return wrong;
                 })
-                this.li = wrong;
+                this.li = this.li;
                  
              }
              

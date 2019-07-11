@@ -5,10 +5,7 @@
         <title> HOT PEPPER Beuty </title>
         <link rel="stylesheet" href="reset.css">
         <link rel="stylesheet" href="style.css">
-        <script
-  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
-  crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
     <body>
         <header>
@@ -42,20 +39,27 @@
             <h2 class="special-logo">
                 <img src="images/top/speciallace.svg" alt="スペシャル">
             </h2>
-            <div class="carousel-wrapper">
-                <ul class="container">
-                    <li><img src="images/top/special1.png" alt="マタニティードレス"></li>
-                    <li><img src="images/top/special2.png" alt="体系別ドレス"></li>
-                    <li><img src="images/top/special3.png" alt="お呼ばれドレス"></li>
+            <div class="outer-wrapper">
+                <div class="carousel-wrapper">
+                    <ul class="container">
+                        <li><img src="images/top/special1.png" alt="マタニティードレス"></li>
+                        <li><img src="images/top/special2.png" alt="体系別ドレス"></li>
+                        <li><img src="images/top/special3.png" alt="お呼ばれドレス"></li>
+                        <li><img src="images/top/special1.png" alt="マタニティードレス"></li>
+                        <li><img src="images/top/special2.png" alt="体系別ドレス"></li>
+                        <li><img src="images/top/special3.png" alt="お呼ばれドレス"></li>
+                        <li><img src="images/top/special1.png" alt="マタニティードレス"></li>
+                    </ul>
+                </div>
+                    <a href="#" class="next trigger-right disabled"></a>
+                    <a href="#" class="previous trigger-left"></a>
+                
+                <ul class="indicator-wrapper">
+                    <li><a href="#" class="current"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
                 </ul>
-                <a href="#" class="previous trigger-right disabled"></a>
-                <a href="#" class="next trigger-left"></a>
-           </div>
-           <ul class="indicator-wrapper">
-                <li><a href="#" class="current"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-           </ul>
+            </div>
         </section>
         
         <section class="dress">
@@ -281,5 +285,6 @@
         </footer>
         <script type="text/javascript" src="tab.js"></script>
         <script type="text/javascript" src="pagination.js"></script>
+        <script type="text/javascript" src="carousel.js"></script>
     </body>
 </html>

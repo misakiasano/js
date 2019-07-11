@@ -4,7 +4,6 @@
         init : function(){
             this.setParameters();
             this.bindEvent(); 
-            this.paginationCount();
         },
         
         setParameters : function(){　
@@ -79,25 +78,9 @@
                     
                    
             });    
-        },
-        
-        paginationCount : function(){
-            var count = 8;
-            var self = this;
-            this.paginationLi.each(function(index){
-                var $elemens = $(this);
-                self.rightBtn.on('click',function(event){
-                    event.preventDefault();
-                    console.log(index > count);
-                    if(index > count){
-                        var showPagination = $elemens.(0,count);
-                        var inPagination = showPagination += '…';
-                        $elemens.html(inPagination);
-                    }
-                });
-            });
         }
-
+        
+      
     };
     
  

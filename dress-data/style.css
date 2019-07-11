@@ -149,9 +149,26 @@ h2{
     width: 150px;
 }
 
+.outer-wrapper{
+    padding: 0;
+    width: 960px;
+    overflow: hidden;
+}
+
+.carousel-wrapper{
+    position: relative;
+    width: 900px;
+    height: 105px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
 .container{
+    position: absolute;
+    width: 2109px;
     display: flex;
     justify-content: center;
+    height: 100%;
 }
 
 .container img:hover{
@@ -159,14 +176,14 @@ h2{
 }
 
 .container li+li{
-    margin-left: 12px;
+    margin-left: 10px;
 }
 
 .special-logo{
     padding-top: 27px;
 }
 
-.carousel-wrapper{
+.outer-wrapper{
     margin-top: 20px;
     position: relative;
     align-items: center;
@@ -181,7 +198,7 @@ h2{
 .trigger-left{
     border-top: 1px solid #808080;
     border-left: 1px solid #808080;
-    left: 5px;   
+    left: 11px;   
 }
 
 
@@ -200,8 +217,9 @@ h2{
 
 .indicator-wrapper{
     text-align: center;
-    margin-top: 7px;
+    margin-top: 5px;
 }
+
 .indicator-wrapper > li{
     display: inline-block;
     margin: 5px;

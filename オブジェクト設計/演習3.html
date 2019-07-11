@@ -91,7 +91,7 @@
 <script>
     var LEIHAUOLI = LEIHAUOLI || {};
     LEIHAUOLI.PAGE1 = {};
-    LEIHAUOLI.PAGE1.mainChart = {
+    LEIHAUOLI.PAGE1.mainPagination = {
         init : function(){
             var myself = this;
             this.subChart = [];
@@ -108,8 +108,6 @@
         }  
     };
     
-
-    
     
     LEIHAUOLI.PAGE1.subChart = function($paginationContainer,mainChart){
         this.$paginationContainer = $paginationContainer;
@@ -118,14 +116,11 @@
         
     };
     
+    
     LEIHAUOLI.PAGE1.subChart.prototype = {
-    
-    
         init : function(){
             this.setParameters();
-            this.bindEvent();
-            this.setPaginationClick();
-              
+            this.bindEvent();   
         },
         
         sendSubChart : function(){
@@ -140,10 +135,6 @@
             }
             this.setArrow();
             this.setPaginationMove();
-            
-            
-           
-            
         },
         
         setParameters : function(){　
@@ -152,14 +143,22 @@
             this.paginationLi = this.$paginationContainer.find('li');
             this.liLength = this.paginationLi.length;
             this.lastPage = this.liLength - 1;
-            this.currentIndex = 0;
-            
+            this.currentIndex = 0; 
         },
         
         bindEvent: function(){
             var self = this;
             this.rightBtn.on('click',this.setRightBtn.bind(this)); 
             this.leftBtn.on('click',this.setLeftBtn.bind(this));
+            this.paginationLi.each(function(index){
+                var $elemens = $(this);
+                $elemens.on('click',function(event){
+                    event.preventDefault();
+                    self.currentIndex = index;
+                    self.setPaginationMove();
+                    self.setArrow();
+                 });
+            });
         
         },
         
@@ -170,9 +169,6 @@
             }
             this.currentIndex++;
             this.sendSubChart();
-            this.setPaginationMove();
-            this.setArrow();    
-           
         },
         
         setLeftBtn : function(event){
@@ -199,10 +195,7 @@
                 this.leftBtn.removeClass('disabled'); 
             } 
         },
-        
-        
-        
-        
+     
         setPaginationMove : function(){
             var self = this;
             this.paginationLi.each(function(index){
@@ -215,26 +208,8 @@
                     
                    
             });    
-        },
-        
-        setPaginationClick : function(){
-            var self = this;
-            this.paginationLi.each(function(index){
-            var $elemens = $(this);
-            $elemens.on('click',function(event){
-                event.preventDefault();
-                self.currentIndex = index;
-                self.setPaginationMove();
-                self.setArrow();
-                });
-            });
-            
         }
-        
-        
-        
-        
-        
+
     };
     
  
@@ -243,7 +218,7 @@
     
     
      $(function(){
-        LEIHAUOLI.PAGE1.mainChart.init();
+        LEIHAUOLI.PAGE1.mainPagination.init();
     });
     
     
