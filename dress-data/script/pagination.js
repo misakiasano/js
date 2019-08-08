@@ -8,8 +8,8 @@
         
         setParameters : function(){　
             this.$paginationContainer = $('.pagination-container') 
-            this.leftBtn = $('.preview')
-            this.rightBtn = $('.next')
+            this.leftBtn = $('.leftBtn')
+            this.rightBtn = $('.rightBtn')
             this.paginationLi = this.$paginationContainer.find('li');
             this.liLength = this.paginationLi.length;
             this.lastPage = this.liLength - 1;

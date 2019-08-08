@@ -24,7 +24,7 @@
     display: flex;
 }
 
-header aside{
+header p{
     font-size: 11px;
     margin-left: 15px;
     color: #929292;
@@ -55,49 +55,49 @@ header aside{
 /*topImg*/
 
 .top-background{
-    background-image: url(images/top/mainimage.jpg);
+    background-image: url(../images/thumbs/top/mainimage.jpg);
     background-position: center;
     background-repeat: no-repeat;
     height: 360px;
     position: relative;
     border-bottom: 2px solid;
     border-bottom-color: #FF7373;
+    position: relative;
 }
 
 .top-background::before{
     content: "";
     display: block;
-    background-image: url(images/top/lace1.svg);
+    background-image: url(../images/thumbs/top/lace1.svg);
     background-repeat: repeat-x;
     width: 100%;
     height: 15px;
-    padding-bottom: 10px;
 }
 
 .top-background::after{
     content: "";
     display: block;
-    background-image: url(images/top/lace2.svg);
+    background-image: url(../images/thumbs/top/lace2.svg);
     background-repeat: repeat-x;
     width: 100%;
     height: 15px;
+    position: absolute;
+    bottom: 10px;
 }
 
 
 .party-dress{
-    width: 470px;
-    height: 143px;
-    margin-bottom: 5px;
+   vertical-align: bottom;
 }
 
 .subtitle{
     font-size: 15px;
     color: #828282;
-    margin-bottom: 60px;
+    margin-top: 5px;
 }
 
 .rental-btn{
-    margin-bottom: 35px;
+    margin-top: 60px;
 }
 
 .top-btn{
@@ -131,7 +131,7 @@ header aside{
 .top-wrapper{
     width: 960px;
     margin: 0px auto;
-    margin-top: 30px;
+    padding-top: 30px;
     padding-left: 110px;
 }
 
@@ -140,17 +140,17 @@ header aside{
 .special-wrapper{
     width: 960px;
     margin: 0px auto;
-    margin-bottom: 30px;
+    padding-top: 27px;
+    padding-bottom: 30px;
 }
 
-h2{
+.special-logo{
     display: block;
     margin: 0 auto;
     width: 150px;
 }
 
 .outer-wrapper{
-    padding: 0;
     width: 960px;
     overflow: hidden;
 }
@@ -177,10 +177,6 @@ h2{
 
 .container li+li{
     margin-left: 10px;
-}
-
-.special-logo{
-    padding-top: 27px;
 }
 
 .outer-wrapper{
@@ -211,8 +207,8 @@ h2{
     top: 40px;
 }
 
-.trigger.disabled{
-    color: #FF8D8D;
+.disabled{
+    display: none;
 }
 
 .indicator-wrapper{
@@ -248,15 +244,16 @@ h2{
 /*dress*/
 
 .dress{
-    background-image: url(images/top/background.png);
-    background-repeat: repeat-y;
-    background-position: center;
+    background-image: url(../detail-images/common/bg_page_pattern.png);
+    background-repeat: repeat;
+    background-color: #ffefef;
 }
+
 
 .dress::before{
     content: "";
     display: block;
-    background-image: url(images/top/lace1.svg);
+    background-image: url(../images/thumbs/top/lace1.svg);
     background-repeat: repeat-x;
     width: 100%;
     height: 13px;
@@ -265,12 +262,17 @@ h2{
 
 .dress-wrapper{
     width: 960px;
-    margin: 0 auto;   
+    margin: 0 auto;
+    padding-top: 27px;
+    background: rgba(255,255,255,0.5);
+    height: 100%;
+    padding-bottom: 60px;
 }
 
 .dress-miniwrapper{
     width: 900px;
     margin: 0 auto;
+    padding-top: 27px;
 }
 
 /*タブ*/
@@ -302,7 +304,7 @@ h2{
     background-color: #FFFFFF;
 }
 .tab-container li{
-    padding: 10px;
+    padding: 25px;
     text-align: left;
     width: 900px;
     height: 75px;
@@ -317,12 +319,13 @@ h2{
 .tub-check{
     color: #808080;
     font-size: 18px;
-    padding: 20px 5px 20px 40px;
+    margin-left: 30px;
 }
 
 .tab-container label{
     color: #4D4D4D;
     font-size: 12px;
+    margin-left: 20px;
 }
 
 .tab-selector li{
@@ -331,7 +334,7 @@ h2{
 
 .tab-selector li.selected{
     background-color: #FFFFFF;
-    display: block;
+/*    display: block;*/
 }
 
 .tab-selector li p{
@@ -347,8 +350,6 @@ h2{
     display: block;
 }
 
-
-
 .selector1 p,
 .selector2 p{
     font-size: 17px;
@@ -360,8 +361,6 @@ h2{
     font-size: 13px;
     font-weight: 200;
 }
-
-
 
 .selector1,.selector2{
     box-shadow: 2px 0px 0px rgb(170,170,170,0.5);
@@ -381,7 +380,8 @@ h2{
     color: #FFFFFF;
     border-style: none;
     border-radius: 4px;
-    margin-left: 60px;  
+    position: absolute;
+    right: 70px;
 }
 
 .search:hover{
@@ -397,7 +397,6 @@ h2{
 .checkbox01-check{
   padding-left: 20px;
   position:relative;
-  margin-right: 20px;
 }
 
 .checkbox01-check::before{
@@ -431,16 +430,15 @@ h2{
 /*ラジオ*/
 
 .radio-01{
-  display: none;
+	display: none;
 }
 
-.radio-01 + label{
+.radio-01-radio{
   padding-left: 20px;
   position:relative;
-  margin-right: 20px;
 }
 
-.radio-01 + label::before{
+.radio-01-radio::before{
   content: "";
   display: block;
   position: absolute;
@@ -452,12 +450,12 @@ h2{
   border-radius: 50%;
 }
 
-.radio-01 + label:hover::before{
+.radio-01-radio:hover::before{
     border-color: #D6C1C1;
 }
 
-.radio-01:checked + label::after{
-  content: "";
+.radio-01:checked + .radio-01-radio::after{
+content: "";
   display: block;
   position: absolute;
   top: 3px;
@@ -468,41 +466,42 @@ h2{
   border-radius: 50%;
 }
 
-
-
-
-/*border*/
-
-.dress-container{
-    border-bottom: 8px solid;
-    color: #E5C0BA;
-    margin-bottom: 20px;
-}
-
-.tab-container{
-    margin-bottom: 30px;
-}
-
 /*search_information*/
 
 .search_information{
     display: flex;
-    margin-bottom: 30px;
+    justify-content: space-between;
+    border-top: 8px solid;
+    color: #E5C0BA;
+    margin-top: 30px;
 }
 
 .search-color-size{
-    font-size: 11px;
+    display: flex;
+    font-size: 12px;
     color: #4D4D4D;
-    
+    margin-top: 20px;
+}
+
+.scene-selection{
+    display: flex;
+}
+
+.color-selection,.size-selection{
+    display: flex;
+}
+
+.color-selection dd,.size-selection dd{
+    margin-left: 5px;
 }
 
 .search-clothes{
     font-size: 12px;
-    padding-left: 630px;
+    margin-top: 20px;
 }
 
 .size-selection{
-    padding-left: 20px;
+   margin-left: 20px;
 }
 
 .dress-count{
@@ -511,49 +510,66 @@ h2{
     font-weight: 600;
 }
 
-/*dress-figure*/
+/*dress-list*/
 
-.dress-figure{
+.dress-list{
     display: grid;
     grid-template-columns
     :  217.5px 217.5px 217.5px 217.5px;
     grid-gap: 10px;
-    margin-bottom: 40px;
+    margin-top: 30px;
 }
 
-.dress-figure dl{
+.dress-list li{
     border: 1px solid #DCDCDC;
-    background-color:#FFFFFF;
+    background-color:#FFFFFF;   
+}
+
+.dress-list dt{
     font-family: 'Meiryo';
     font-size: 11px;
     color: #666666;
 }
 
-.dress-figure dt{
+.dress-list li p{
+    display: block;
     text-align: center;
-    margin-bottom: 12px;
 }
 
-.dress-figure dt img:hover{
+.dress-list img:hover{
     opacity: 0.7;
 }
 
-.dress-figure dd+dd{
-    margin: 4px 0px 12px 10px;   
+.dress-list dd{
+    font-size: 12px;
 }
 
-.dress-figure dd{
-    margin-left: 10px;
+.dress-list div{
+    display: flex;
 }
 
-.dress-figure dd span{
- font-size: 12px;    
+.list-size{
+    margin-top: 7px;
 }
+
+.list-rental dd,
+.list-size dd{
+    margin-left: 5px;
+}
+
+.dress-list dl{
+    padding: 10px;
+}
+
+.dress-list .tax{
+    font-size: 8px;
+}
+
 
 /*pagination*/
 
 .pagination-container{
-    padding-bottom: 68px;
+    margin-top: 40px;
     text-align: right;
     font-size: 12px;
 }
@@ -578,6 +594,9 @@ h2{
     background-color: #FFFFFF;
     color: #5F5050;
     border-color: #EAD3D3;
+    width: 35px;
+    height: 30px;
+    text-align: center;
 }
 
 .pagination > li.active > a{
@@ -596,6 +615,9 @@ h2{
     border-color: #DCDCDC;
 }
 
+.pagination-container .disabled{
+    opacity: 0;
+}
 /*footer*/
 
 footer{
@@ -606,8 +628,7 @@ footer{
     width: 900px;
     margin: 0 auto;
     display: flex;
-    padding: 10px 0px 30px 0px;
-    
+    padding: 10px 0px 30px 0px;  
 }
 
 .footer-list{
@@ -636,14 +657,9 @@ footer::after{
     border-color: #000000;
 }
 
-
-
-
-
-
-
-
-
+.show-Selection{
+  display: none;
+}
 
 
 

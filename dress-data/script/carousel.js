@@ -3,7 +3,6 @@ LEIHAUOLI.PAGE3 = {};
 LEIHAUOLI.PAGE3.carousel = {
     init : function(){
         this.setParameters();
-        this.setLinkIndicator();
         this.bindEvent();
     },
     
@@ -19,53 +18,14 @@ LEIHAUOLI.PAGE3.carousel = {
         this.currentIndex = 0;
         this.whitespace = 10;
         var divisible = this.$containerLength / 3; 
-        this.divisible = Math.floor(divisible) //2　割り切れる
-        this.remainder = this.$containerLength % 3; //1 余り
+        this.divisible = Math.floor(divisible) 
+        this.remainder = this.$containerLength % 3; 
+        this.$indicator = $('.indicator-wrapper').find('a');
     },  
   
-    setLinkIndicator: function(){
-        var $indicator = $('.indicator-wrapper').find('a');
-        var myself = this;
-        
-        $indicator.each(function(index){
-        var $self = $(this);
-            $self.on('click',function(event){
-                event.preventDefault();
-                myself.currentIndex = index;
-                if(myself.currentIndex == 0){
-                    myself.$container.animate({left:myself.currentIndex*(myself.whitespace*myself.divisible + myself.imgWidth*myself.divisible)*-1},300);    
-                }
-                if(myself.currentIndex == myself.divisible){
-                    myself.$container.animate({left:myself.currentIndex*(myself.whitespace*myself.divisible + myself.imgWidth*myself.divisible)*-1},300);    
-                }
-                if(myself.currentIndex == myself.remainder){
-                     myself.$container.animate({left:myself.currentIndex*(myself.imgWidth*3+30)*-1},300);    
-                }
-//                if(myself.currentIndex == myself.remainder){
-//                    myself.$container.animate({left:myself.currentIndex*(myself.imgWidth*myself.remainder+myself.whitespace*myself.remainder)*-1},300)   
-//                }
-
-                
-                $indicator.removeClass('current');
-                $self.addClass('current');
-                $('.previous').removeClass('disabled');
-                $('.next').removeClass('disabled');
-                if(myself.currentIndex == myself.lastPage){
-                    $('.next').addClass('disabled');
-                }
-                if(myself.currentIndex == 0){
-                    $('.previous').addClass('disabled');
-                }
-
-            });
-        });        
-          
-    },  
-
     setIndicator: function() {
         var myself = this;
-        var $indicator = $('.indicator-wrapper').find('a');
-        $indicator.each(function(i){
+        this.$indicator.each(function(i){
             var $elemens = $(this);
             if(i == myself.currentIndex){
                 $elemens.addClass('current');
@@ -83,7 +43,6 @@ LEIHAUOLI.PAGE3.carousel = {
         } 
     },
     
-    
     setArrowPrevious:function(){
         if(this.currentIndex == 0){
             $('.previous').addClass('disabled');
@@ -93,11 +52,58 @@ LEIHAUOLI.PAGE3.carousel = {
     },
  
     bindEvent : function(){
+        var myself = this;
         this.$btnNext.on('click',this.slideToNext.bind(this));
-        this.$btnPrevious.on('click',this.slideToPrevious.bind(this)); 
+        this.$btnPrevious.on('click',this.slideToPrevious.bind(this));
+        
+        this.$indicator.each(function(index){
+            var $self = $(this);
+            $self.on('click',function(event){
+                event.preventDefault();
+                var left = myself.$container.position().left;
+                var num = myself.currentIndex;
+                myself.currentIndex = index;
+                if(myself.currentIndex == myself.lastPage && myself.currentIndex == num){
+                    return;
+                }
+                
+                    if(num == index){
+                        return;
+                    }
+                
+                if(myself.currentIndex == 0){
+                    myself.$container.animate({left:0},300);    
+                }
+             
+                if(0 < myself.currentIndex && myself.currentIndex <= myself.divisible -1){
+                    if(num < myself.currentIndex){
+                        myself.$container.animate({left:left - (myself.imgWidth*3 + myself.whitespace*3)},300);    
+                    }else if (num >= myself.currentIndex){
+                         myself.$container.animate({left:left + (myself.imgWidth*3 + myself.whitespace*3)},300);      
+                    }
+                }
+                
+                if(myself.currentIndex == myself.divisible){
+                    myself.$container.animate({left:left - (myself.imgWidth*1 + myself.whitespace*1)},300);         
+                }
+                
+                myself.$indicator.removeClass('current');
+                $self.addClass('current');
+                $('.previous').removeClass('disabled');
+                $('.next').removeClass('disabled');
+                if(myself.currentIndex == myself.lastPage){
+                    $('.next').addClass('disabled');
+                }
+                if(myself.currentIndex == 0){
+                    $('.previous').addClass('disabled');
+                }
+
+            });
+        });
     },
     
-    slideToPrevious : function(){
+    slideToPrevious : function(event){
+        event.preventDefault();
         if(this.$container.is('animated')){
             return;
         }
@@ -110,13 +116,14 @@ LEIHAUOLI.PAGE3.carousel = {
         if(this.currentIndex == this.remainder){
             this.$container.animate({left:this.currentIndex*(this.imgWidth*this.remainder+this.whitespace*this.remainder)*-1},300)
         }else if(this.currentIndex == 0){
-            this.$container.animate({left:this.currentIndex*(this.whitespace*this.divisible + this.imgWidth*this.divisible)*-1},300); 
+            this.$container.animate({left:0},300); 
         }
         this.setIndicator();
         this.setArrowPrevious();
     },
     
-    slideToNext : function(){
+    slideToNext : function(event){
+        event.preventDefault();
         if(this.$container.is('animated')){
             return;  
         }
@@ -129,7 +136,7 @@ LEIHAUOLI.PAGE3.carousel = {
         if(this.currentIndex == this.divisible){
             this.$container.animate({left:this.currentIndex*(this.whitespace*this.divisible + this.imgWidth*this.divisible)*-1},300);  
         }else if(this.currentIndex == this.remainder){
-            this.$container.animate({left:this.currentIndex*(this.imgWidth*3+30)*-1},300);   
+            this.$container.animate({left:this.currentIndex*(this.imgWidth*3+this.whitespace*3)*-1},300);   
         }
         this.setIndicator();
         this.setArrowNext();
